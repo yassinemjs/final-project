@@ -8,4 +8,4 @@ const GradeSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('grade', GradeSchema);
+module.exports = mongoose.model('grades', GradeSchema);

@@ -20,14 +20,17 @@ router.post('/auth',
         const {password,email}=req.body
     try {
            let prof= await Ensaignant.findOne({email})
+          
+           
            if(!prof) {return res.status(400).send([{msg:'Invalid Credentials'}])}
     
            const mdp = await bcrypt.compare(password,prof.password)
            if(!mdp) {return res.status(400).send([{msg:'Invalid Credentials'}])}
 
-           const profile= await Ensaignant.findOne({_id:prof._id}).populate('grade').
-           populate('level')
-           
+            const profile= await Ensaignant.findOne({_id:prof._id}).select('-password').populate('grade').
+           populate('level')  
+        
+
      const payload={
          user:{
              id:prof._id ,

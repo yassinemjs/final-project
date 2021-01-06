@@ -8,4 +8,4 @@ const LevelSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('level', LevelSchema);
+module.exports = mongoose.model('levels', LevelSchema);
