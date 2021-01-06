@@ -1,6 +1,7 @@
-const express = require('express');
-const { check, validationResult } = require('express-validator');
-const Situation = require('../models/Situation');
+const express = require("express");
+const { check, validationResult } = require("express-validator");
+const auth = require("../middleware/authAdmin");
+const Situation = require("../models/Situation");
 const router = express.Router();
 
 //http://localhost:4000/api/Situation
@@ -8,8 +9,9 @@ const router = express.Router();
 // @desc   Post situation
 // @access Private
 router.post(
-  '/',
-  [check('situation', 'situation is required').not().isEmpty()],
+  "/",
+  auth,
+  [check("situation", "situation is required").not().isEmpty()],
   async (req, res) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
@@ -23,7 +25,7 @@ router.post(
       await newSituation.save();
       res.send(newSituation);
     } catch (error) {
-      res.status(500).send('Server Error');
+      res.status(500).send("Server Error");
     }
   }
 );

@@ -1,15 +1,17 @@
-const express = require('express');
-const { check, validationResult } = require('express-validator');
-const Level = require('../models/Level');
+const express = require("express");
+const { check, validationResult } = require("express-validator");
+const auth = require("../middleware/authAdmin");
+const Level = require("../models/Level");
 const router = express.Router();
 
-//http://localhost:400/api/level
+//http://localhost:4000/api/level
 // @route  Post /api/level
 // @desc   Post level
 // @access Private
 router.post(
-  '/',
-  [check('level', 'level is required').not().isEmpty()],
+  "/",
+  auth,
+  [check("level", "level is required").not().isEmpty()],
   async (req, res) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
@@ -23,7 +25,7 @@ router.post(
       await newLevel.save();
       res.send(newLevel);
     } catch (error) {
-      res.status(500).send('Server Error');
+      res.status(500).send("Server Error");
     }
   }
 );
