@@ -112,7 +112,7 @@ router.put('/:_id', authAdmin, async (req, res) => {
       return res.status(400).send([{ ms: 'enseignant not found' }]);
     }
 
-    prof = await Ensaigant.findOneAndUpdate({ _id }, { $set: editProf });
+    prof = await Enseignant.findOneAndUpdate({ _id }, { $set: editProf });
 
     await prof.save();
 
@@ -124,7 +124,7 @@ router.put('/:_id', authAdmin, async (req, res) => {
   }
 });
 
-//@ http://localhost:4000/api/prof/all  *get all profs by admin  *private
+//@ x  *get all profs by admin  *private
 router.get('/all', authAdmin, async (req, res) => {
   try {
     const profs = await Enseignant.find()

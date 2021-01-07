@@ -27,4 +27,19 @@ router.post(
     }
   }
 );
+
+// // @Route    Get api/level
+// // @desc     Get all levels
+// // @access   Private
+
+router.get('/', async (req, res) => {
+  try {
+    const levels = await Level.find();
+
+    res.send(levels);
+  } catch (err) {
+    res.status(500).send([{ msg: 'server error' }]);
+  }
+});
+
 module.exports = router;
