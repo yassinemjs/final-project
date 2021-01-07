@@ -1,34 +1,36 @@
-const express = require("express");
-const { check, validationResult } = require("express-validator");
-const auth = require("../middleware/authAdmin");
+const express = require('express');
+const { check, validationResult } = require('express-validator');
+const auth = require('../middleware/authAdmin');
 const router = express.Router();
 
-const Arrondissement = require("../models/Arrondisement");
+const Sector = require('../models/Sector');
 
 // http://localhost:4000/api/secteur
 // @Route    Post /api/secteur
 // @desc     Post secteur
 // @access   Private
 router.post(
-  "/",
+  '/',
   auth,
-  [check("arrondissement", "arrondissement is required").not().isEmpty()],
+  [check('sector', 'sector is required').not().isEmpty()],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).send(error.array());
     }
 
-    const { arrondissement } = req.body;
+    const { inspector, sector, city } = req.body;
     try {
-      const newArr = new Arrondissement({
-        arrondissement,
+      const newArr = new Sector({
+        inspector,
+        sector,
+        city,
       });
       await newArr.save();
       res.send(newArr);
     } catch (error) {
       console.error(error);
-      res.status(500).send("Server Error");
+      res.status(500).send('Server Error');
     }
   }
 );

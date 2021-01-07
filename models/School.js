@@ -8,9 +8,9 @@ const SchoolSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  secteur: {
+  sector: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'secteur',
+    ref: 'sector',
   },
 });
 

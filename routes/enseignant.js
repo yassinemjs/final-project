@@ -20,8 +20,8 @@ router.post(
       check('email', 'eamil is required').isEmail(),
       check('grade', 'grade is required').not().isEmpty(),
       check('level', 'level is required').not().isEmpty(),
-      check('situation', 'situation is required').not().isEmpty(),
-      check('speciality', 'speciality is required').not().isEmpty(),
+      /*  check('situation', 'situation is required').not().isEmpty(),
+      check('speciality', 'speciality is required').not().isEmpty(), */
       check('password', 'password is require minimum 6 characters').isLength({
         min: 6,
       }),
@@ -80,7 +80,7 @@ router.post(
         recruitement_date,
         password,
       });
-
+      console.log(prof);
       const salt = await bcrypt.genSalt(10);
       prof.password = await bcrypt.hash(password, salt);
 
@@ -130,10 +130,10 @@ router.get('/all', authAdmin, async (req, res) => {
     const profs = await Enseignant.find()
       .select('-password')
       .sort({ date: -1 })
-      .populate('grade', 'grade')
-      .populate('level', 'level')
-      .populate('speciality', 'speciality')
-      .populate('situation', 'situation');
+      .populate('grade')
+      .populate('level')
+      .populate('speciality')
+      .populate('situation');
     res.send(profs);
   } catch (err) {
     res.status(500).send([{ msg: 'server error' }]);
