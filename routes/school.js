@@ -1,38 +1,33 @@
 const express = require("express");
 const { check, validationResult } = require("express-validator");
-const Grade = require("../models/Grade");
+const auth = require("../middleware/authAdmin");
+const School = require("../models/School");
 const router = express.Router();
 
-//http://localhost:4000/api/grade
-// @route  Post /api/grade
-// @desc   Post grade
+//http://localhost:4000/api/school
+// @route  Post /api/school
+// @desc   Post school
 // @access Private
 router.post(
   "/",
-  [check("grade", "grade is required").not().isEmpty()],
+  auth,
+  [check("etab", "school is required").not().isEmpty()],
   async (req, res) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
       return res.status(400).send(error.array());
     }
-    const { grade } = req.body;
+    const { etab } = req.body;
     try {
-      const newGrade = new Grade({
-        grade,
+      const newSch = new School({
+        etab,
       });
-      await newGrade.save();
-      res.send(newGrade);
+      await newSch.save();
+      res.send(newSch);
     } catch (error) {
       res.status(500).send("Server Error");
     }
   }
 );
-
-// // @Route    Get api/grade
-// // @desc     Get all grade
-// // @access   Private
-// router.get('/', async (req,res)=>{
-
-// })
 
 module.exports = router;
