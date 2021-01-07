@@ -3,7 +3,7 @@ const { check, validationResult } = require('express-validator');
 const Situation = require('../models/Situation');
 const router = express.Router();
 
-//http://localhost:4000/api/Situation
+//http://localhost:4000/api/situation
 // @route  Post /api/situation
 // @desc   Post situation
 // @access Private
@@ -27,4 +27,19 @@ router.post(
     }
   }
 );
+
+// // @Route    Get api/situation
+// // @desc     Get all situations
+// // @access   Private
+
+router.get('/', async (req, res) => {
+  try {
+    const situations = await Situation.find();
+
+    res.send(situations);
+  } catch (err) {
+    res.status(500).send([{ msg: 'server error' }]);
+  }
+});
+
 module.exports = router;

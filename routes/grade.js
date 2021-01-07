@@ -1,6 +1,6 @@
-const express = require("express");
-const { check, validationResult } = require("express-validator");
-const Grade = require("../models/Grade");
+const express = require('express');
+const { check, validationResult } = require('express-validator');
+const Grade = require('../models/Grade');
 const router = express.Router();
 
 //http://localhost:4000/api/grade
@@ -8,8 +8,8 @@ const router = express.Router();
 // @desc   Post grade
 // @access Private
 router.post(
-  "/",
-  [check("grade", "grade is required").not().isEmpty()],
+  '/',
+  [check('grade', 'grade is required').not().isEmpty()],
   async (req, res) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
@@ -23,7 +23,7 @@ router.post(
       await newGrade.save();
       res.send(newGrade);
     } catch (error) {
-      res.status(500).send("Server Error");
+      res.status(500).send('Server Error');
     }
   }
 );
@@ -31,8 +31,15 @@ router.post(
 // // @Route    Get api/grade
 // // @desc     Get all grade
 // // @access   Private
-// router.get('/', async (req,res)=>{
 
-// })
+router.get('/', async (req, res) => {
+  try {
+    const grades = await Grade.find();
+
+    res.send(grades);
+  } catch (err) {
+    res.status(500).send([{ msg: 'server error' }]);
+  }
+});
 
 module.exports = router;

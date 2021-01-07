@@ -27,4 +27,19 @@ router.post(
     }
   }
 );
+
+// // @Route    Get api/speciality
+// // @desc     Get all specialities
+// // @access   Private
+
+router.get('/', async (req, res) => {
+  try {
+    const specialities = await Speciality.find();
+
+    res.send(specialities);
+  } catch (err) {
+    res.status(500).send([{ msg: 'server error' }]);
+  }
+});
+
 module.exports = router;
