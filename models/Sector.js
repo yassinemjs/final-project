@@ -1,21 +1,18 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const ArrodissementSchema = new mongoose.Schema({
-  arrondissement: {
+  sector: {
     type: String,
     required: true,
   },
   city: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "citys",
+    ref: 'city',
   },
   inspector: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "inspector",
+    ref: 'inspector',
   },
 });
 
-module.exports = Inspector = mongoose.model(
-  "arrondissement",
-  ArrodissementSchema
-);
+module.exports = Inspector = mongoose.model('sector', ArrodissementSchema);

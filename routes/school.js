@@ -1,7 +1,7 @@
-const express = require("express");
-const { check, validationResult } = require("express-validator");
-const auth = require("../middleware/authAdmin");
-const School = require("../models/School");
+const express = require('express');
+const { check, validationResult } = require('express-validator');
+const auth = require('../middleware/authAdmin');
+const School = require('../models/School');
 const router = express.Router();
 
 //http://localhost:4000/api/school
@@ -9,23 +9,24 @@ const router = express.Router();
 // @desc   Post school
 // @access Private
 router.post(
-  "/",
+  '/',
   auth,
-  [check("etab", "school is required").not().isEmpty()],
+  [check('school', 'school is required').not().isEmpty()],
   async (req, res) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
       return res.status(400).send(error.array());
     }
-    const { etab } = req.body;
+    const { school, sector } = req.body;
     try {
       const newSch = new School({
-        etab,
+        school,
+        sector,
       });
       await newSch.save();
       res.send(newSch);
     } catch (error) {
-      res.status(500).send("Server Error");
+      res.status(500).send('Server Error');
     }
   }
 );
