@@ -1,4 +1,6 @@
-.needs-validation {
-  margin: 40px;
-  width: 60%;
+.App {
+  text-align: center;
 }
+
+.Add{padding-left: 24em;
+padding-top: 2em;}
