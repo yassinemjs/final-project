@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import {Provider} from 'react-redux'
@@ -8,10 +9,10 @@ import NavBar from './components/Nav/NavBar'
 import LoginPage from './components/LoginPage'
 import store from './js/Store'
 
+
 function App() {
-
-
   return (
+
   
     <Provider store={store}>
      <Router>
@@ -31,7 +32,6 @@ function App() {
     </Router> 
 
     </Provider>
-    
   );
 }
 
