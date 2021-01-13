@@ -17,7 +17,7 @@ export const loginSucces=(form)=> async dispatch =>{
     } catch (err) {
         
         const error=err.response.data
-        console.log(error)
+        
         if(Array.isArray(error)){
             error.forEach(err=> dispatch(setAlert(err.msg,"alert alert-danger text-center")))
         }

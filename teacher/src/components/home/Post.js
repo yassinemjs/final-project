@@ -20,35 +20,7 @@ export const Post = () => {
               <div className="h7 text-muted">Mark Lee Smith</div>
             </div>
           </div>
-          <div>
-            <div className="dropdown">
-              <button
-                className="btn btn-link dropdown-toggle"
-                type="button"
-                id="gedf-drop1"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="fa fa-ellipsis-h"></i>
-              </button>
-              <div
-                className="dropdown-menu dropdown-menu-right"
-                aria-labelledby="gedf-drop1"
-              >
-                <div className="h6 dropdown-header">Configuration</div>
-                <a className="dropdown-item" href="/">
-                  Save
-                </a>
-                <a className="dropdown-item" href="/">
-                  Hide
-                </a>
-                <a className="dropdown-item" href="/">
-                  Report
-                </a>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
       <div className="card-body">
@@ -69,16 +41,14 @@ export const Post = () => {
           voluptates.
         </p>
       </div>
-      <div className="card-footer">
-        <a href="/" className="card-link">
-          <i className="fa fa-gittip"></i> Like
-        </a>
-        <a href="/" className="card-link">
-          <i className="fa fa-comment"></i> Comment
-        </a>
-        <a href="/" className="card-link">
-          <i className="fa fa-mail-forward"></i> Share
-        </a>
+      <div className="card-footer ">
+        
+      <i class="fas fa-thumbs-up"></i> Like
+       
+        
+          <i className="fa fa-comment pointer "></i> Comment
+      
+
       </div>
     </div>
   );

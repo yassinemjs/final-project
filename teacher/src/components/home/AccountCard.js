@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {useDispatch,useSelector} from 'react-redux'
 import "./AccountCard.css";
 
 export const AccountCard = () => {
+    const user=useSelector(state=>state.authReducer.user)
+
   return (
     <div className="container mb-4">
       <div className="row">
@@ -10,10 +13,11 @@ export const AccountCard = () => {
           <div className="author-card pb-3 img-card">
             <div className="author-card-profile">
               <div className="author-card-avatar round-img">
-                <img
+               <Link to='/profile/user'> <img
                   src="https://bootdey.com/img/Content/avatar/avatar1.png"
                   alt="Daniel Adams"
                 />
+                </Link>
               </div>
               <div className="author-card-details">
                 <h5 className="author-card-name text-lg">Daniel Adams</h5>
@@ -25,10 +29,16 @@ export const AccountCard = () => {
           </div>
           <div className="wizard card-position">
             <nav className="list-group list-group-flush">
-              <Link className="list-group-item" to="/settings">
+              <Link className="list-group-item" to="/profile/settings">
                 <i className="fa fa-user text-muted"></i>Profile Settings
               </Link>
             </nav>
+            <hr/>
+            <p>grade</p>
+            <hr/>
+            <p>speciality</p>
+            <hr/>
+            <p><i class="fas fa-phone-alt"></i> phone</p>
           </div>
         </div>
       </div>

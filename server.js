@@ -11,7 +11,6 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 
-<<<<<<< HEAD
 app.use('/api/level', require('./routes/level'));
 app.use('/api/grade', require('./routes/grade'));
 app.use('/api/speciality', require('./routes/speciality'));
@@ -25,20 +24,6 @@ app.use('/api/sch_ens', require('./routes/schoolEns'));
 app.use('/api/note', require('./routes/note'));
 app.use('/api/secteur', require('./routes/sector'));
 app.use('/api/inspecteur', require('./routes/inspector'));
-=======
-app.use("/api/level", require("./routes/level"));
-app.use("/api/grade", require("./routes/grade"));
-app.use("/api/speciality", require("./routes/speciality"));
-app.use("/api/situation", require("./routes/situation"));
-app.use("/api/city", require("./routes/city"));
-app.use("/api/prof", require("./routes/enseignant"));
-app.use("/api/admin", require("./routes/administrateur"));
-app.use("/api/school", require("./routes/school"));
-app.use("/api/sch_ens", require("./routes/schoolEns"));
-app.use("/api/note", require("./routes/note"));
-app.use("/api/secteur", require("./routes/sector"));
-app.use("/api/inspecteur", require("./routes/inspector"));
->>>>>>> master
 
 const port = process.env.PORT || 4000;
 

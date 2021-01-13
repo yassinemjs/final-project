@@ -11,7 +11,7 @@ export const HomeApp = () => {
     <div className="container gedf-wrapper">
       <div className="row">
         <div className="col-md-3">
-          <div className="card profile-card">
+          <div className="profile-card">
             <AccountCard />
           </div>
         </div>
@@ -22,7 +22,7 @@ export const HomeApp = () => {
           <Post />
           <Post />
         </div>
-        <div className="col-md-3 calendre-profile">
+        <div className=" calendre-profile">
           <Calendar />
           <Notification />
         </div>

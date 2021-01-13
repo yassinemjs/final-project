@@ -24,17 +24,9 @@ export const AccountSettings = () => {
             <div class="card">
               <div class="card-body tab-content">
                 <Switch>
-                  <Route
-                    exact
-                    path="/settings"
-                    component={ProfileInformation}
-                  />
-                  <Route
-                    path="/settings/accountsettings"
-                    component={Settings}
-                  />
-                  <Route path="/settings/security" component={Security} />
-                  <Route path="/settings/notif" component={Notification} />
+                 
+                  <Route path="/profile/settings" component={Security} />
+                  
                 </Switch>
               </div>
             </div>
