@@ -3,7 +3,11 @@
 } */
 .calendre-profile {
   position: fixed;
-  right: 50px;
+ 
+  right: 20px;
+  width: 25%;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 .row {
   margin-top: 90px;
@@ -18,8 +22,23 @@
 }
 
 .profile-card{
+  font-weight: 400;
+    border: 0;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+
+
+
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
   position: fixed;
-  left: 50px;
+  margin-left: -66px;
 }
 
 @media (min-width: 992px) {
@@ -36,4 +55,12 @@
 .dropdown-toggle::after {
   content: none;
   display: none;
+}
+.card-footer{
+  cursor: pointer;
+  color: rgba(0, 132, 255, 0.966);
+ 
+}
+.pointer{
+  margin-left: 10px;
 }
