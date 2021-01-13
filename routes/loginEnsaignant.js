@@ -5,7 +5,7 @@ const jwt =require('jsonwebtoken')
 const bcrypt= require('bcryptjs')
 const {check,validationResult}=require('express-validator')
 const config=require('config')
-const Ensaignant=require('../models/Ensaigant')
+const Ensaignant=require('../models/Enseignant')
 
 
 //@http:://localhost:4000/api/prof/auth *post login *private
@@ -18,6 +18,7 @@ router.post('/auth',
     if(!error.isEmpty()) { return res.status(400).send(error.array())}
 
         const {password,email}=req.body
+       
     try {
            let prof= await Ensaignant.findOne({email})
            if(!prof) {return res.status(400).send([{msg:'Invalid Credentials'}])}
