@@ -1,11 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
+const authAdmin = require('../middleware/authAdmin');
 
 const Admin = require('../models/Administrateur');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+
+//@http://localhost:4000/api/admin *get admin by Token
+
+router.get('/', authAdmin, async (req, res) => {
+  try {
+    const user = await Admin.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 //@http://localhost:4000/api/admin *post admin
 
