@@ -1,0 +1,10 @@
+.nav-position {
+  top: 0;
+  position: fixed;
+}
+.dropdown-default {
+  left: -110px;
+}
+.show {
+  color: black;
+}
