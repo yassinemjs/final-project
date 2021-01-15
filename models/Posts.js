@@ -39,7 +39,11 @@ const PostSchema = new mongoose.Schema({
                 ref:'ensaignants',
             }
         }
-    ]
+    ],
+    date:{
+        type:Date,
+        default:Date.now
+    }
 
 }) 
 

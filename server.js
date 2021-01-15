@@ -16,6 +16,7 @@ app.use('/api/grade', require('./routes/grade'));
 app.use('/api/speciality', require('./routes/speciality'));
 app.use('/api/situation', require('./routes/situation'));
 app.use('/api/city', require('./routes/city'));
+app.use('/api/post', require('./routes/posts'));
 app.use('/api/prof', require('./routes/enseignant'));
 app.use('/api/prof', require('./routes/loginEnsaignant'));
 app.use('/api/admin', require('./routes/administrateur'));

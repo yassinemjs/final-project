@@ -1,7 +1,26 @@
-import React from "react";
+import React,{useState} from "react";
+import {useDispatch} from 'react-redux'
+import {addPost} from '../../js/action/PostsAction'
 import "./Style.css";
 
 export const AddPost = () => {
+          
+           const dispatch=useDispatch()
+          
+           const[form,setForm]=useState({
+             text:""
+           })
+
+        const postAdd=(e)=>{
+          e.preventDefault()
+         
+          dispatch(addPost(form))
+          setForm({
+            text:""
+          })
+        }   
+
+     
   return (
     <div className="card gedf-card">
       <div className="card-header">
@@ -11,11 +30,7 @@ export const AddPost = () => {
               Make a publication
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/">
-              Images
-            </a>
-          </li>
+         
         </ul>
       </div>
       <div className="card-body">
@@ -29,6 +44,8 @@ export const AddPost = () => {
                 className="form-control"
                 id="message"
                 rows="3"
+                value={form.text}
+                onChange={(e)=>setForm({...form,text:e.target.value})}
                 placeholder="What are you thinking?"
               ></textarea>
             </div>
@@ -47,26 +64,11 @@ export const AddPost = () => {
         </div>
         <div className="btn-toolbar justify-content-between">
           <div className="btn-group">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" onClick={postAdd} className="btn btn-primary">
               share
             </button>
           </div>
-          <div className="btn-group">
-            <button type="button" className="btn btn-link dropdown-toggle">
-              <i className="fa fa-globe"></i>
-            </button>
-            <div className="dropdown-menu dropdown-menu-right">
-              <a className="dropdown-item" href="/">
-                <i className="fa fa-globe"></i> Public
-              </a>
-              <a className="dropdown-item" href="/">
-                <i className="fa fa-users"></i> Friends
-              </a>
-              <a className="dropdown-item" href="/">
-                <i className="fa fa-user"></i> Just me
-              </a>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>

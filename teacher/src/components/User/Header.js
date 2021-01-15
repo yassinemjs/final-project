@@ -4,7 +4,7 @@ import "./User.css";
 
 Modal.setAppElement("#root");
 
-export const Header = () => {
+export const Header = ({user}) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <div className="media col-md-10 col-lg-8 col-xl-7 py-5 mx-auto">
@@ -14,7 +14,7 @@ export const Header = () => {
         className="d-block ui-w-100 rounded-circle"
       />
       <div className="media-body ml-5">
-        <h4 className="font-weight-bold mb-4">First Name</h4>
+        <h4 className="font-weight-bold mb-4">{`${user.lastName} ${user.name}`}</h4>
 
         <div className="text-muted mb-4">
           <h3>Bio</h3>
