@@ -40,6 +40,28 @@
   position: fixed;
   margin-left: -66px;
 }
+.comment{
+  height: 6px;
+}
+.name-comment{
+  color: gray;
+  font-weight: 500;
+  left:1px;
+
+}
+.comment-text{
+  border: 1px solid;
+    border-radius: 10px;
+    /* width: 126%; */
+    padding: 2px;
+    margin-left: 9px;
+    padding-right: 11px;
+    background-color: beige;
+    color: gray;
+}
+.card input{
+  width: 100%;
+}
 
 @media (min-width: 992px) {
   .gedf-main {
@@ -63,4 +85,20 @@
 }
 .pointer{
   margin-left: 10px;
+}
+
+.comment-delete{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  height: 20px;
+}
+.post-delete{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  
+  height: 55px;
+  padding: 20px;
+
 }

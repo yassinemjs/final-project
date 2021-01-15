@@ -1,7 +1,37 @@
-import React from "react";
-import "./Style.css";
+import React,{useState} from "react";
+import {useDispatch} from 'react-redux'
+import {likePost} from '../../js/action/PostsAction'
+import {addComment,deletePost} from '../../js/action/PostsAction'
+import Commenter from "./Commenter";
+import "./Style.css"; 
 
-export const Post = () => {
+export const Post = ({posts,userId}) => {
+        
+       const [like,setLike]=useState(true)
+       const [show,setShow]=useState(false)
+       const[form,setText]=useState({
+         text:''
+       })
+     const dispatch=useDispatch()
+
+     const onSubmitcomment=(e)=>{
+       e.preventDefault()
+       dispatch(addComment(posts._id,form))
+       setText({
+         text:""
+       })
+     }
+
+     const postDelete=()=>{
+       dispatch(deletePost(posts._id))
+     }
+
+     const postLike=()=>{
+               
+         dispatch(likePost(posts._id,like))
+         setLike(!like)
+     }
+  
   return (
     <div className="card gedf-card">
       <div className="card-header">
@@ -16,8 +46,8 @@ export const Post = () => {
               />
             </div>
             <div className="ml-2">
-              <div className="h5 m-0">@bootdey</div>
-              <div className="h7 text-muted">Mark Lee Smith</div>
+              
+              <div className="h7 text-muted">{posts.name}</div>
             </div>
           </div>
           
@@ -26,30 +56,30 @@ export const Post = () => {
       <div className="card-body">
         <div className="text-muted h7 mb-2">
           {" "}
-          <i className="fa fa-clock-o"></i>10 min ago
+          <i className="fa fa-clock-o"></i>2020
         </div>
-        <a className="card-link" href="/">
-          <h5 className="card-title">
-            Lorem ipsum dolor sit amet, consectetur adip.
-          </h5>
-        </a>
+        
 
         <p className="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-          recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor sequi
-          fuga quia quaerat cum, obcaecati hic, molestias minima iste
-          voluptates.
+         {posts.text}
         </p>
       </div>
-      <div className="card-footer ">
-        
-      <i class="fas fa-thumbs-up"></i> Like
+      <div className="card-footer post-delete">
+        <p className='mt-3'>
+      <i class="fas fa-thumbs-up" onClick={postLike}  ></i> {posts.like.length>0?`${posts.like.length} like`:'like' }
        
         
-          <i className="fa fa-comment pointer "></i> Comment
-      
-
-      </div>
+          <i className="fa fa-comment pointer "></i><span onClick={()=>setShow(!show)}>{posts.comment.length>0?`${posts.comment.length} Comment`:'comment' }
+          </span>
+          </p>
+          {userId===posts.user?<p className='mt-3' onClick={postDelete}><i  class="far fa-trash-alt "></i></p>:""}
+          </div>
+         { show && <>
+     {posts.comment.map(comment=> <Commenter comment={comment} postId={posts._id} /> )}<br/>
+     <form onSubmit={onSubmitcomment} >
+     <input type='text' onChange={(e)=>setText({...form,text:e.target.value})} value={form.text}   placeholder="commenter" /></form>
+      </>
+         }
     </div>
   );
 };

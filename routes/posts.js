@@ -3,7 +3,7 @@ const router= express.Router()
 
 const {check,validationResult}=require('express-validator')
 const Posts=require('../models/Posts') 
-const Ensaignant=require('../models/Ensaigant')
+const Ensaignant=require('../models/Enseignant')
 const auth=require('../middleware/authAdmin')
 
 //@ http://localhost:4000/api/post  *add post *private
@@ -59,7 +59,7 @@ router.put('/:id',[auth,
  try {
      const post= await Posts.findById(id)
      if(!post) { return res.status(400).send([{msg:'post not found'}])}
-        const prof= await Enseignant.findById(req.user.id)
+        const prof= await Ensaignant.findById(req.user.id)
                const newComment={
                    text,
                    user:req.user.id,
@@ -67,7 +67,7 @@ router.put('/:id',[auth,
                }             
      post.comment.unshift(newComment)
       await post.save()
-      res.send(post)
+      res.send(post.comment)
      
  } catch (err) {
 
@@ -86,7 +86,7 @@ router.delete('/:_id/comment/:com_id',auth,async(req,res)=>{
       const comment= post.comment.filter(com=>com._id.toString()!==com_id)
       post.comment=comment
       await post.save()
-      res.send(post)
+      res.send(post.comment)
 
       
   } catch (err) {
@@ -104,7 +104,7 @@ router.put('/like/:id',auth,async(req,res)=>{
 
       post.like.push({user:req.user.id})
       await post.save()
-      res.send(post)
+      res.send(post.like)
       
   } catch (err) {
       res.status(500).send([{msg:'server error'}])
@@ -121,7 +121,7 @@ router.delete('/like/:id',auth,async(req,res)=>{
 
       post.like.pop({user:req.user.id})
       await post.save()
-      res.send(post)
+      res.send(post.like)
       
   } catch (err) {
       res.status(500).send([{msg:'server error'}])
@@ -166,7 +166,7 @@ router.get('/:id',auth,async(req,res)=>{
   
     const {id}=req.params
   try {
-         const postProf= await Posts.find({user:id})
+         const postProf= await Posts.find({user:id}).sort({date:-1})
   
         res.send(postProf)
       

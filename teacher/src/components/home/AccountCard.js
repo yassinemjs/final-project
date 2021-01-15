@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import {useDispatch,useSelector} from 'react-redux'
+
 import "./AccountCard.css";
 
-export const AccountCard = () => {
-    const user=useSelector(state=>state.authReducer.user)
+export const AccountCard = ({user}) => {
+    
 
   return (
     <div className="container mb-4">
@@ -20,9 +20,9 @@ export const AccountCard = () => {
                 </Link>
               </div>
               <div className="author-card-details">
-                <h5 className="author-card-name text-lg">Daniel Adams</h5>
+                <h5 className="author-card-name text-lg">{`${user.lastName} ${user.name}`}</h5>
                 <span className="author-card-position">
-                  Joined February 06, 2017
+                   2020
                 </span>
               </div>
             </div>
@@ -33,12 +33,16 @@ export const AccountCard = () => {
                 <i className="fa fa-user text-muted"></i>Profile Settings
               </Link>
             </nav>
+           {!user.grade && !user.speciality ?"":
+            <Fragment>
+           <hr/>
+            <p>{!user.grade?"":user.grade}</p>
             <hr/>
-            <p>grade</p>
+            <p>{!user.speciality?"":user.speciality}</p>
+            </Fragment>
+          }
             <hr/>
-            <p>speciality</p>
-            <hr/>
-            <p><i class="fas fa-phone-alt"></i> phone</p>
+            <p><i class="fas fa-phone-alt"></i>{user.phone?' '+user.phone:" "+"phone"}</p>
           </div>
         </div>
       </div>

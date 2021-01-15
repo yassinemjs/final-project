@@ -29,12 +29,13 @@ const LoginPage = () => {
 
       const dispatch= useDispatch()
       const auth=useSelector(state=>state.authReducer.auth)
+     
          
               const [form,setForm]=useState({
                 email:"",
                 password:""
               })
-             console.log(form)
+            
           const onchange=(e)=>{
             setForm({...form,[e.target.name]:e.target.value.trim()})
           }   
@@ -44,10 +45,13 @@ const LoginPage = () => {
             dispatch(loginSucces(form))
                
           }
+
+           
           if(auth){
 
             return  <Redirect to='/profile' />
           }
+         
 
 
   return (
