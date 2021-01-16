@@ -9,6 +9,9 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.head {
+  margin-top: 80px;
+}
 .theme-bg-white {
   background-color: #fff !important;
 }
