@@ -1,11 +1,41 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { editTeacherById } from "../../js/action/EditTeacher";
 import Modal from "react-modal";
+
 import "./User.css";
 
 Modal.setAppElement("#root");
 
-export const Header = ({user}) => {
+export const Header = ({ user }) => {
+  const dispatch = useDispatch();
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [form, setForm] = useState({
+    name: user.name,
+    lastName: user.lastName,
+    adresse: user.adresse,
+    phone: user.phone,
+    email: user.email,
+    startDate: user.dateOfBirth,
+    placeOfBirth: user.placeOfBirth,
+    children: user.children,
+    civil_status: user.civil_status,
+  });
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(editTeacherById(user._id, form));
+
+    setModalIsOpen(false);
+  };
   return (
     <div className="media col-md-10 col-lg-8 col-xl-7 py-5 mx-auto">
       <img
@@ -17,15 +47,22 @@ export const Header = ({user}) => {
         <h4 className="font-weight-bold mb-4">{`${user.lastName} ${user.name}`}</h4>
 
         <div className="text-muted mb-4">
-          <h3>Bio</h3>
-          Lorem ipsum dolor sit amet, nibh suavitate qualisque ut nam. Ad harum
-          primis electram duo, porro principes ei has.
+          <p>Adresse : {user.adresse}</p>
+          <p>Phone : {user.phone}</p>
+          <p>Email : {user.email}</p>
+          <p>
+            Birthday :
+            {`${user.dateOfBirth.slice(0, 10)} / ${user.placeOfBirth}`}
+          </p>
+          <p>Number of children : {user.children}</p>
+          <p>Civil status : {user.civil_status}</p>
         </div>
       </div>
       <i
         className="fas fa-user-edit edit"
         onClick={() => setModalIsOpen(true)}
       ></i>
+
       <Modal
         isOpen={modalIsOpen}
         shouldCloseOnOverlayClick={false}
@@ -34,83 +71,99 @@ export const Header = ({user}) => {
           overlay: { backgroundColor: "rgba(0,0,0,0.2)" },
           content: {
             width: "50%",
-            height: "50%",
+            height: "70%",
             margin: "0 auto",
             marginTop: "50px",
           },
         }}
       >
         <form>
-          <div class="form-group">
-            <label for="fullName">Full Name</label>
+          <div className="form-group">
+            <h2 className="text-center mt-3">Edit Teacher</h2>
+            <label className="mt-3">Last Name</label>
             <input
               type="text"
-              class="form-control"
-              id="fullName"
-              aria-describedby="fullNameHelp"
-              placeholder="Enter your fullname"
-              value="Kenneth Valdez"
+              className="form-control"
+              placeholder="Enter your lastName"
+              name="lastName"
+              value={form.lastName}
+              onChange={handleChange}
             />
-            <small id="fullNameHelp" class="form-text text-muted">
-              Your name may appear around here where you are mentioned. You can
-              change or remove it at any time.
-            </small>
-          </div>
-          <div class="form-group">
-            <label for="bio">Your Bio</label>
-            <textarea
-              class="form-control autosize"
-              id="bio"
-              placeholder="Write something about you"
-              style={{
-                overflow: "hidden",
-                overflowWrap: "break-word",
-                resize: "none",
-                height: "62px",
-              }}
-            >
-              A front-end developer that focus more on user interface design, a
-              web interface wizard, a connector of awesomeness.
-            </textarea>
-          </div>
-          <div class="form-group">
-            <label for="url">URL</label>
+            <br />
+            <label className="mt-3">First Name</label>
             <input
               type="text"
-              class="form-control"
-              id="url"
-              placeholder="Enter your website address"
-              value="http://benije.ke/pozzivkij"
+              className="form-control"
+              placeholder="Enter your firstName"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
             />
-          </div>
-          <div class="form-group">
-            <label for="location">Location</label>
+            <br />
+            <label for="fullName">Date of Birthday</label>
+            <br />
+            <input
+              type="date"
+              name="dateOfBirth"
+              placeholder="dd-mm-yyyy"
+              value={form.dateOfBirth}
+              min="1960-01-01"
+              max="2030-12-31"
+              onChange={handleChange}
+            />
+            <br />
+            <label className="mt-3">Birthplace</label>
             <input
               type="text"
-              class="form-control"
-              id="location"
-              placeholder="Enter your location"
-              value="Bay Area, San Francisco, CA"
+              className="form-control"
+              placeholder="Enter your birthplace"
+              onChange={handleChange}
             />
-          </div>
-          <div class="form-group small text-muted">
-            All of the fields on this page are optional and can be deleted at
-            any time, and by filling them out, you're giving us consent to share
-            this data wherever your user profile appears.
+            <label className="mt-3">Adress</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter your adress"
+              name="adresse"
+              value={form.adresse}
+              onChange={handleChange}
+            />
+            <label className="mt-3">Phone</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter your phone"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+            />
+            <label className="mt-3">Number of children</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter your"
+              name="children"
+              value={form.children}
+              onChange={handleChange}
+            />
+            <label className="mt-3">Civil status</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter your civil status"
+              name="civil_status"
+              value={form.civil_status}
+              onChange={handleChange}
+            />
           </div>
         </form>
         <div>
           <button
-            className="btn btn-primary mr-3"
-            onClick={() => setModalIsOpen(false)}
+            type="submit"
+            className="btn btn-primary btn-block"
+            onClick={handleSubmit}
           >
             Save
-          </button>
-          <button
-            className="btn btn-secondary"
-            onClick={() => setModalIsOpen(false)}
-          >
-            Cancel
           </button>
         </div>
       </Modal>

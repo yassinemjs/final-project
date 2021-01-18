@@ -18,7 +18,7 @@ app.use('/api/situation', require('./routes/situation'));
 app.use('/api/city', require('./routes/city'));
 app.use('/api/post', require('./routes/posts'));
 app.use('/api/prof', require('./routes/enseignant'));
-app.use('/api/prof', require('./routes/loginEnsaignant'));
+app.use('/api/prof/me', require('./routes/loginEnsaignant'));
 app.use('/api/admin', require('./routes/administrateur'));
 app.use('/api/school', require('./routes/school'));
 app.use('/api/sch_ens', require('./routes/schoolEns'));

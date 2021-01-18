@@ -17,17 +17,17 @@ export const AccountCard = ({user}) => {
           <div className="author-card pb-3 img-card">
             <div className="author-card-profile">
               <div className="author-card-avatar round-img">
-               <Link to='/profile/user'> <img
-                  src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                  alt="Daniel Adams"
-                />
+                <Link to="/profile/user">
+                  {" "}
+                  <img
+                    src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                    alt="Daniel Adams"
+                  />
                 </Link>
               </div>
               <div className="author-card-details">
                 <h5 className="author-card-name text-lg">{`${user.lastName} ${user.name}`}</h5>
-                <span className="author-card-position">
-                   2020
-                </span>
+                <span className="author-card-position">2020</span>
               </div>
             </div>
           </div>
