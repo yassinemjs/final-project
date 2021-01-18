@@ -1,11 +1,9 @@
 import React from "react";
 import { Header } from "./Header";
-import { PersonalInformation } from "./PersonalInformation";
-import { Schools } from "./Schools";
-import { UserInfo } from "./UserInfo";
-import { Skills } from "./Skills";
-import { Friends } from "./Friends";
-import { Photo } from "./Photo";
+import { DateEmployee } from "./DateEmployee";
+import { GetPosts } from "./GetPosts";
+import { ProfessionalInformation } from "./ProfessionalInformation";
+import { Note } from "./Note";
 import { useSelector } from "react-redux";
 import "./User.css";
 
@@ -26,14 +24,12 @@ export const User = () => {
             </div>
             <div class="row">
               <div class="col">
-                <PersonalInformation />
-                <Schools />
+                <DateEmployee />
+                <GetPosts />
               </div>
               <div class="col-xl-4">
-                <UserInfo />
-                <Skills />
-                <Friends />
-                <Photo />
+                <ProfessionalInformation />
+                <Note />
               </div>
             </div>
           </div>
