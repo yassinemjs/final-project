@@ -3,9 +3,15 @@ import { Link } from "react-router-dom";
 
 import "./AccountCard.css";
 
-export const AccountCard = ({ user }) => {
+export const AccountCard = ({user}) => {
+    
+   
+
   return (
-    <div className="container mb-4">
+    <>
+    {user.map(user=>(
+      
+      <div className="container mb-4">
       <div className="row">
         <div className="col-lg-4 pb-5 content">
           <div className="author-card pb-3 img-card">
@@ -31,24 +37,22 @@ export const AccountCard = ({ user }) => {
                 <i className="fa fa-user text-muted"></i>Profile Settings
               </Link>
             </nav>
-            {!user.grade && !user.speciality ? (
-              ""
-            ) : (
-              <Fragment>
-                <hr />
-                <p>{!user.grade ? "" : user.grade}</p>
-                <hr />
-                <p>{!user.speciality ? "" : user.speciality}</p>
-              </Fragment>
-            )}
-            <hr />
-            <p>
-              <i class="fas fa-phone-alt"></i>
-              {user.phone ? " " + user.phone : " " + "phone"}
-            </p>
+           {!user.grade && !user.speciality ?"":
+            <Fragment>
+           <hr/>
+            <p>{!user.grade.grade?"":user.grade.grade}</p>
+            <hr/>
+            <p>{!user.speciality.speciality?"":user.speciality.speciality}</p>
+            </Fragment>
+          }
+            <hr/>
+            <p><i class="fas fa-phone-alt"></i>{user.phone?' '+user.phone:" "+"phone"}</p>
           </div>
         </div>
       </div>
     </div>
-  );
+    )
+    )}
+    </>
+  )
 };

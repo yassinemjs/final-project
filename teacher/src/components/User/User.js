@@ -13,13 +13,15 @@ export const User = () => {
 
   return (
     <>
+    
+
       {loading && !user ? (
         "..... loading"
       ) : (
         <div class="layout-content">
           <div class="container flex-grow-1 container-p-y">
             <div class="container-m-nx container-m-ny theme-bg-white mb-4 head">
-              <Header user={user} />
+            {user.map(user=><Header user={user} />)}
               <hr class="m-0" />
             </div>
             <div class="row">
@@ -32,6 +34,7 @@ export const User = () => {
                 <Note />
               </div>
             </div>
+
           </div>
         </div>
       )}

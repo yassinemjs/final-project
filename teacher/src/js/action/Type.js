@@ -18,6 +18,11 @@ export const REMOVE_COMMENT = "REMOVE_COMMENT";
 export const ADD_POST = "ADD_POST";
 export const REMOVE_POST = "REMOVE_POST";
 
+export const MESSAGE_SUCCES="MESSAGE_SUCCES"
+export const MESSAGE_FAIL="MESSAGE_FAIL"
+
 export const EDIT_TEACHER = "EDIT_TEACHER";
+
+export const EDIT_PASSWORD="EDIT_PASSWORD"
 
 export const LOGOUT = "LOGOUT";
