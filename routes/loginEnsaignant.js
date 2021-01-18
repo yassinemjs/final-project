@@ -51,7 +51,7 @@ router.post('/auth',
 
 // http://localhost:4000/api/prof/me  *get profile *private
 router.get('/me',auth,async(req,res)=>{
-     
+      
     try {
         const user= await  Ensaignant.findById(req.user.id).select('-password').populate('grade').populate('level').populate('situation').populate('speciality')
         res.send(user)

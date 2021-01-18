@@ -23,7 +23,7 @@ const  user =useSelector(state=>state. authReducer.user)
     <div class="layout-content">
       <div class="container flex-grow-1 container-p-y">
         <div class="container-m-nx container-m-ny theme-bg-white mb-4">
-          <Header user={user} />
+          {user.map(user=><Header user={user} />)}
           <hr class="m-0" />
         </div>
         <div class="row">

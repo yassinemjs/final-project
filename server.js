@@ -25,6 +25,7 @@ app.use('/api/sch_ens', require('./routes/schoolEns'));
 app.use('/api/note', require('./routes/note'));
 app.use('/api/secteur', require('./routes/sector'));
 app.use('/api/inspecteur', require('./routes/inspector'));
+app.use('/api/msg',require('./routes/message')); 
 
 const port = process.env.PORT || 4000;
 

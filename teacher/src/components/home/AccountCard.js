@@ -5,9 +5,13 @@ import "./AccountCard.css";
 
 export const AccountCard = ({user}) => {
     
+   
 
   return (
-    <div className="container mb-4">
+    <>
+    {user.map(user=>(
+      
+      <div className="container mb-4">
       <div className="row">
         <div className="col-lg-4 pb-5 content">
           <div className="author-card pb-3 img-card">
@@ -36,9 +40,9 @@ export const AccountCard = ({user}) => {
            {!user.grade && !user.speciality ?"":
             <Fragment>
            <hr/>
-            <p>{!user.grade?"":user.grade}</p>
+            <p>{!user.grade.grade?"":user.grade.grade}</p>
             <hr/>
-            <p>{!user.speciality?"":user.speciality}</p>
+            <p>{!user.speciality.speciality?"":user.speciality.speciality}</p>
             </Fragment>
           }
             <hr/>
@@ -47,5 +51,8 @@ export const AccountCard = ({user}) => {
         </div>
       </div>
     </div>
-  );
+    )
+    )}
+    </>
+  )
 };

@@ -4,7 +4,7 @@ const initialState= {
     token:localStorage.getItem('token'),
     loading:true,
     auth:false,
-    user:null,
+    user:[],
 }
 
 const reducer =(state=initialState,action)=>{
@@ -14,7 +14,7 @@ const reducer =(state=initialState,action)=>{
              
            case USER_SUCCES:
             
-               return {...state,user:payload,auth:true,loading:false}
+               return {...state,user:[payload],auth:true,loading:false}
 
            case LOGIN_SUCCES:
                localStorage.setItem('token',payload.token)
@@ -24,7 +24,7 @@ const reducer =(state=initialState,action)=>{
                case USER_FAIL:
                case LOGIN_FAIL:
                  localStorage.removeItem('token')
-                 return {...state,loading:false,user:null,auth:false}  
+                 return {...state,loading:false,user:[],auth:false}  
 
                  default :
                  return state 
