@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./AccountCard.css";
 
-export const AccountCard = ({user}) => {
-    
-
+export const AccountCard = ({ user }) => {
   return (
     <div className="container mb-4">
       <div className="row">
@@ -13,17 +11,17 @@ export const AccountCard = ({user}) => {
           <div className="author-card pb-3 img-card">
             <div className="author-card-profile">
               <div className="author-card-avatar round-img">
-               <Link to='/profile/user'> <img
-                  src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                  alt="Daniel Adams"
-                />
+                <Link to="/profile/user">
+                  {" "}
+                  <img
+                    src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                    alt="Daniel Adams"
+                  />
                 </Link>
               </div>
               <div className="author-card-details">
                 <h5 className="author-card-name text-lg">{`${user.lastName} ${user.name}`}</h5>
-                <span className="author-card-position">
-                   2020
-                </span>
+                <span className="author-card-position">2020</span>
               </div>
             </div>
           </div>
@@ -33,16 +31,21 @@ export const AccountCard = ({user}) => {
                 <i className="fa fa-user text-muted"></i>Profile Settings
               </Link>
             </nav>
-           {!user.grade && !user.speciality ?"":
-            <Fragment>
-           <hr/>
-            <p>{!user.grade?"":user.grade}</p>
-            <hr/>
-            <p>{!user.speciality?"":user.speciality}</p>
-            </Fragment>
-          }
-            <hr/>
-            <p><i class="fas fa-phone-alt"></i>{user.phone?' '+user.phone:" "+"phone"}</p>
+            {!user.grade && !user.speciality ? (
+              ""
+            ) : (
+              <Fragment>
+                <hr />
+                <p>{!user.grade ? "" : user.grade}</p>
+                <hr />
+                <p>{!user.speciality ? "" : user.speciality}</p>
+              </Fragment>
+            )}
+            <hr />
+            <p>
+              <i class="fas fa-phone-alt"></i>
+              {user.phone ? " " + user.phone : " " + "phone"}
+            </p>
           </div>
         </div>
       </div>

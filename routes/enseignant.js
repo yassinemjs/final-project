@@ -112,7 +112,11 @@ router.put("/:_id", authAdmin, async (req, res) => {
       return res.status(400).send([{ ms: "enseignant not found" }]);
     }
 
-    prof = await Enseignant.findOneAndUpdate({ _id }, { $set: editProf });
+    prof = await Enseignant.findOneAndUpdate(
+      { _id },
+      { $set: editProf },
+      { new: true }
+    );
 
     await prof.save();
 

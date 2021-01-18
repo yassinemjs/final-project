@@ -28,7 +28,7 @@ export const Security = () => {
           </div>
         </form>
         <hr />
-       <button className='btn btn-primary btn-block'>Update</button>
+        <button className="btn btn-primary btn-block">Update</button>
       </div>
     </div>
   );

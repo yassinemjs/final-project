@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const EnseignantSchema = new mongoose.Schema({
   id_unique: {
@@ -46,19 +46,19 @@ const EnseignantSchema = new mongoose.Schema({
   },
   grade: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'grade',
+    ref: "grade",
   },
   level: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'level',
+    ref: "level",
   },
   situation: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'situation',
+    ref: "situation",
   },
   speciality: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'speciality',
+    ref: "speciality",
   },
   status: {
     type: String,
@@ -73,4 +73,4 @@ const EnseignantSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('enseignant', EnseignantSchema);
+module.exports = mongoose.model("enseignant", EnseignantSchema);
