@@ -94,7 +94,7 @@ router.post(
 
       jwt.sign(payload, config.get('tokenSecret'), (err, token) => {
         if (err) res.send(err);
-        res.json({ token });
+        res.json(prof);
       });
     } catch (err) {
       res.status(500).send([{ msg: 'server error' }]);
@@ -109,7 +109,7 @@ router.put('/:_id', authAdmin, async (req, res) => {
   try {
     let prof = await Enseignant.findById({ _id });
     if (!prof) {
-      return res.status(400).send([{ ms: 'enseignant not found' }]);
+      return res.status(400).send([{ msg: 'enseignant not found' }]);
     }
 
     prof = await Enseignant.findOneAndUpdate({ _id }, { $set: editProf });
@@ -119,7 +119,7 @@ router.put('/:_id', authAdmin, async (req, res) => {
     res.send(prof);
   } catch (err) {
     if (err.kind == 'ObjectId') {
-      return res.status(500).send([{ msg: 'ensaignat not found' }]);
+      return res.status(500).send([{ msg: 'enseignant not found' }]);
     }
   }
 });
@@ -129,11 +129,12 @@ router.get('/all', authAdmin, async (req, res) => {
   try {
     const profs = await Enseignant.find()
       .select('-password')
-      .sort({ date: -1 })
-      .populate('grade')
+      .populate('grade', 'grade')
       .populate('level')
+      .populate('situation')
       .populate('speciality')
-      .populate('situation');
+      .sort({ date: -1 });
+
     res.send(profs);
   } catch (err) {
     res.status(500).send([{ msg: 'server error' }]);

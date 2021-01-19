@@ -83,12 +83,16 @@ router.post(
     try {
       const admin = await Admin.findOne({ email });
       if (!admin) {
-        return res.status(400).send([{ msg: 'Invalid Credentials' }]);
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
       const mdp = await bcrypt.compare(password, admin.password);
       if (!mdp) {
-        return res.status(400).send([{ msg: 'Invalid Credentials' }]);
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
       const payload = {
@@ -97,12 +101,13 @@ router.post(
         },
       };
       jwt.sign(payload, config.get('tokenSecret'), (err, token) => {
-        if (err) return res.statuus(400).send(err);
+        if (err) throw err;
 
         res.json({ token, admin });
       });
     } catch (err) {
-      res.status(500).send('server error');
+      console.error(err.message);
+      res.status(500).send('Server error');
     }
   }
 );

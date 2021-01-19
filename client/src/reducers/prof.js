@@ -1,17 +1,25 @@
-import {
-  USER_CREATE_FAILED,
-  USER_CREATE_REQUEST,
-  USER_CREATE_SUCCESS,
-} from '../actions/types';
+import { ENS_ERROR, ADD_ENS, GET_TEACHERS } from '../actions/types';
 
-export default function (state = {}, action) {
-  switch (action.type) {
-    case USER_CREATE_REQUEST:
-      return { loading: true };
-    case USER_CREATE_SUCCESS:
-      return { loading: false, success: true, user: action.payload };
-    case USER_CREATE_FAILED:
-      return { loading: false, error: action.payload };
+const initialState = {
+  teachers: [],
+  loading: true,
+  error: {},
+};
+
+export default function (state = initialState, action) {
+  const { type, payload } = action;
+  switch (type) {
+    case ADD_ENS:
+      return {
+        ...state,
+        teachers: [...state.teachers, payload],
+        loading: false,
+      };
+    case GET_TEACHERS:
+      return { ...state, teachers: payload, loading: false };
+
+    case ENS_ERROR:
+      return { loading: false, error: payload };
     default:
       return state;
   }

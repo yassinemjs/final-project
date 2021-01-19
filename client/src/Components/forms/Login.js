@@ -20,7 +20,7 @@ const Login = ({ login, isAuthenticated }) => {
     login(email, password);
   };
   if (isAuthenticated) {
-    return <Redirect to='/addUser' />;
+    return <Redirect to='/home' />;
   }
 
   return (
@@ -54,7 +54,7 @@ const Login = ({ login, isAuthenticated }) => {
               />
             </div>
             <div className='text-center'>
-              <MDBBtn>Login</MDBBtn>
+              <MDBBtn type='submit'>Login</MDBBtn>
             </div>
           </form>
         </MDBCol>
