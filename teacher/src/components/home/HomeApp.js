@@ -12,7 +12,7 @@ import "./Style.css";
 export const HomeApp = () => {
                    
                const user=useSelector(state=>state.authReducer.user)
-               const auth=useSelector(state=>state.authReducer.auth)
+               
                const loading=useSelector(state=>state.authReducer.loading)
                const posts=useSelector(state=>state.posts.posts)
                const isLoading=useSelector(state=>state.posts.loading)
@@ -24,14 +24,16 @@ export const HomeApp = () => {
        dispatch(loadUser())
        dispatch(getPost())
        
-      }, []) 
+      }, [dispatch]) 
 
 
       if(loading || !user ){
-        return (".....loading")
+        return (
+          <p>.....loading</p>
+          )
       }
       if(isLoading || !posts ){
-        return (".....loading")
+        return (<p>.....loading</p>)
       }
     
      if(!user ){
@@ -40,7 +42,7 @@ export const HomeApp = () => {
      if(!posts ){
       return "posts not found"
     }
-
+            
   return (
     <div className="container gedf-wrapper">
       <div className="row">
@@ -51,7 +53,7 @@ export const HomeApp = () => {
         </div>
         <div className="col-md-6 gedf-main">
           <AddPost />
-         {posts[0].map(posts=> (<Post posts={posts} userId={user._id} />) )}
+         {posts[0].map(posts=> (<Post posts={posts} user={user} />) )}
           
         </div>
         <div className=" calendre-profile">

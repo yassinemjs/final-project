@@ -7,10 +7,10 @@ import {AccountSettings} from './components/AccountSettings/AccountSettings'
 import {HomeApp} from './components/home/HomeApp'
 import NavBar from './components/Nav/NavBar'
 import LoginPage from './components/LoginPage'
-import PrivateRoute from './components/PrivateRouter'
+import PrivateRoute, { PrivateRouter } from './components/PrivateRouter'
 import {loadUser} from './js/action/authAction'
-import {getPost} from './js/action/PostsAction'
-import SetToken from './headers/SetToken'
+
+import MessagesNotification from './components/home/MessagesNotification'
 import store from './js/Store'
 
 
@@ -24,7 +24,7 @@ function App() {
   useEffect(()=>{
       
      store.dispatch(loadUser())
-     store.dispatch(getPost())
+    
       
   }
   ,[])
@@ -47,6 +47,7 @@ function App() {
          <PrivateRoute path="/profile" exact component={HomeApp} />
         <PrivateRoute path="/profile/user" component={User} />
         <PrivateRoute path="/profile/settings" exact component={AccountSettings} /> 
+        <PrivateRouter path='/profile/all-notification' component={MessagesNotification} />
         
       </Switch>
       

@@ -27,8 +27,8 @@ router.post('/auth',
            const mdp = await bcrypt.compare(password,prof.password)
            if(!mdp) {return res.status(400).send([{msg:'Invalid Credentials'}])}
 
-           const profile= await Ensaignant.findOne({_id:prof._id}).populate('grade').
-           populate('level')
+           const profile= await Ensaignant.findOne({_id:prof._id}).select('-password').populate('grade').
+           populate('level').populate('situation').populate('speciality')
            
      const payload={
          user:{
@@ -50,16 +50,17 @@ router.post('/auth',
 })
 
 // http://localhost:4000/api/prof/me  *get profile *private
-router.get('/me',auth,async(req,res)=>{
-     
+router.get('/user',auth,async(req,res)=>{
     try {
-        const user= await  Ensaignant.findById(req.user.id).select('-password').populate('grade').populate('level').populate('situation').populate('speciality')
-        res.send(user)
+
+        const prof=await Ensaignant.findById(req.user.id).select('-password').populate('grade').
+        populate('level').populate('situation').populate('speciality')
+
+        res.send(prof)
         
     } catch (err) {
         res.status(500).send([{msg:'server error'}])
     }
-
 })
 
 

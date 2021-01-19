@@ -5,7 +5,7 @@ import {addComment,deletePost} from '../../js/action/PostsAction'
 import Commenter from "./Commenter";
 import "./Style.css"; 
 
-export const Post = ({posts,userId}) => {
+export const Post = ({posts,user}) => {
         
        const [like,setLike]=useState(true)
        const [show,setShow]=useState(false)
@@ -72,7 +72,7 @@ export const Post = ({posts,userId}) => {
           <i className="fa fa-comment pointer "></i><span onClick={()=>setShow(!show)}>{posts.comment.length>0?`${posts.comment.length} Comment`:'comment' }
           </span>
           </p>
-          {userId===posts.user?<p className='mt-3' onClick={postDelete}><i  class="far fa-trash-alt "></i></p>:""}
+          {user.map(user=>user._id===posts.user?<p className='mt-3' onClick={postDelete}><i  class="far fa-trash-alt "></i></p>:"")}
           </div>
          { show && <>
      {posts.comment.map(comment=> <Commenter comment={comment} postId={posts._id} /> )}<br/>

@@ -7,9 +7,9 @@ import SetToken from '../../headers/SetToken'
 export const loginSucces=(form)=> async dispatch =>{
     
     try {
-        const res= await axios.post("http://localhost:4000/api/prof/auth",form)
+        const res= await axios.post("http://localhost:4000/api/prof/me/auth",form)
         
-
+       console.log(res.data)
         dispatch({
             type:LOGIN_SUCCES,
             payload :res.data
@@ -38,7 +38,7 @@ export const loadUser =()=>async dispatch=>{
         }
 
     try {
-          const res=await axios.get("http://localhost:4000/api/prof/me") 
+          const res=await axios.get("http://localhost:4000/api/prof/me/user") 
           
           dispatch({
               type:USER_SUCCES,

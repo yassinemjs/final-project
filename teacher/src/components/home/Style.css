@@ -102,3 +102,23 @@
   padding: 20px;
 
 }
+
+.notif-msg{
+  margin-top: 65px;
+  margin-left: 40px;
+  border: 1px solid;
+  padding: 20px;
+  background-color: #e2e8f0;
+  width: 90%;
+}
+
+.notification{
+  padding: 22px;
+    margin: auto;
+    /* top: 68%; */
+    height: -23%;
+    background-color: white;
+    margin-top: 130px;
+    width: 82%;
+   
+}

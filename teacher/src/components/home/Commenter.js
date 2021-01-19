@@ -20,7 +20,7 @@ const Commenter = ({comment,postId}) => {
            <div className='comment-delete'>
             <p className='pl-3 comment'><span className="name-comment">{comment.name}</span>:
             <span className="comment-text"> {comment.text}</span></p>
-            {user._id.toString()===comment.user.toString()?<span ><i onClick={onDelete} class="far fa-trash-alt card-footer"></i></span>:""}
+            {user.map(user=>user._id.toString()===comment.user.toString()?<span ><i onClick={onDelete} class="far fa-trash-alt card-footer"></i></span>:"")}
             </div>
             
      
