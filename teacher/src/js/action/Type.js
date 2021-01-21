@@ -10,6 +10,9 @@ export const USER_FAIL = "USER_FAIL";
 export const POSTS_SUCCES = "POSTS_SUCCES";
 export const POSTS_FAIL = "POSTS_FAIL";
 
+export const POST_SUCCES = "POST_SUCCES";
+export const POST_FAIL = "POST_FAIL";
+
 export const LIKE_POST = "LIKE_POST";
 
 export const ADD_COMMENT = "ADD_COMMENT";
@@ -18,11 +21,13 @@ export const REMOVE_COMMENT = "REMOVE_COMMENT";
 export const ADD_POST = "ADD_POST";
 export const REMOVE_POST = "REMOVE_POST";
 
-export const MESSAGE_SUCCES="MESSAGE_SUCCES"
-export const MESSAGE_FAIL="MESSAGE_FAIL"
+export const DELETE_USER_POST = "DELETE_USER_POST";
+
+export const MESSAGE_SUCCES = "MESSAGE_SUCCES";
+export const MESSAGE_FAIL = "MESSAGE_FAIL";
 
 export const EDIT_TEACHER = "EDIT_TEACHER";
 
-export const EDIT_PASSWORD="EDIT_PASSWORD"
+export const EDIT_PASSWORD = "EDIT_PASSWORD";
 
 export const LOGOUT = "LOGOUT";

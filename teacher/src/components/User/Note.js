@@ -9,12 +9,12 @@ export const Note = () => {
           <div>Note</div>
         </div>
         <div className="card-body">
-          <div classNameName="flex">
+          <div className="header">
             <p>person entitled</p>
             <span>14/05/1990</span>
           </div>
           <hr />
-          <div classNameName="flex">
+          <div className="header">
             <p>Note</p>
             <span>14/05/1990</span>
           </div>
