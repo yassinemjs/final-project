@@ -11,10 +11,15 @@ import PrivateRoute, { PrivateRouter } from './components/PrivateRouter'
 import {loadUser} from './js/action/authAction'
 
 import MessagesNotification from './components/home/MessagesNotification'
+import ProfProfile from './components/profpage/ProfProfile'
 import store from './js/Store'
+import SetToken from './headers/SetToken'
 
 
  
+if(localStorage.token){
+  SetToken(localStorage.token)
+}
 
 function App() {
 
@@ -48,6 +53,7 @@ function App() {
         <PrivateRoute path="/profile/user" component={User} />
         <PrivateRoute path="/profile/settings" exact component={AccountSettings} /> 
         <PrivateRouter path='/profile/all-notification' component={MessagesNotification} />
+        <PrivateRouter path='/profile/:id' component={ProfProfile} />
         
       </Switch>
       

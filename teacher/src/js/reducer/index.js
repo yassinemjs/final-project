@@ -3,6 +3,7 @@ import alert  from './Alert.js'
 import authReducer from './AuthReducer'
 import posts from './PostsReducer'
 import messages from './Message'
+import prof from './ProfReducer'
 
 const rootReducer= combineReducers({
      
@@ -10,6 +11,7 @@ const rootReducer= combineReducers({
     authReducer,
     posts,
     messages,
+    prof,
 })
 
 

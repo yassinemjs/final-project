@@ -13,7 +13,8 @@ const reducer =(state=initialState,action)=>{
         case MESSAGE_SUCCES:
             return {...state,msg:payload,loading:false}
         case MESSAGE_FAIL:
-            return {...state,loading:false}    
+            return {...state,loading:false}
+                
       default:
           return state
     }

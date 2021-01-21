@@ -53,7 +53,7 @@ export const HomeApp = () => {
         </div>
         <div className="col-md-6 gedf-main">
           <AddPost />
-         {posts[0].map(posts=> (<Post posts={posts} user={user} />) )}
+         {posts.map(posts=> (<Post posts={posts} user={user} />) )}
           
         </div>
         <div className=" calendre-profile">
