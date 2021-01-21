@@ -4,6 +4,7 @@ import authReducer from './AuthReducer'
 import posts from './PostsReducer'
 import messages from './Message'
 import prof from './ProfReducer'
+import post from "./PostReducer";
 
 const rootReducer= combineReducers({
      
@@ -12,7 +13,13 @@ const rootReducer= combineReducers({
     posts,
     messages,
     prof,
+    post,
 })
 
 
-export default  rootReducer 
+
+
+
+
+
+export default rootReducer;

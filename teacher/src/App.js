@@ -12,8 +12,8 @@ import {loadUser} from './js/action/authAction'
 
 import MessagesNotification from './components/home/MessagesNotification'
 import ProfProfile from './components/profpage/ProfProfile'
-import store from './js/Store'
 import SetToken from './headers/SetToken'
+import store from './js/Store'
 
 
  
@@ -22,24 +22,11 @@ if(localStorage.token){
 }
 
 function App() {
-
- 
-  
-
-  useEffect(()=>{
-      
-     store.dispatch(loadUser())
-    
-      
-  }
-  ,[])
-
-  
-   
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
 
   return (
-
-  
     <Provider store={store}>
      <Router>
         
