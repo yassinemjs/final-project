@@ -75,10 +75,12 @@ export const delteComment = (idPost, idComment) => async (dispatch) => {
       payload: { idPost, idComment },
     });
   } catch (err) {
-    console.log(err.response.data);
-    const error = err.response.data;
-    if (Array.isArray(error)) {
-      error.forEach((err) => alert(err.msg));
+
+   
+    const error=err.response.data 
+    if(Array.isArray(error)){
+      error.forEach(err=>alert(err.msg))
+
     }
   }
 };
@@ -106,10 +108,12 @@ export const deletePost = (id) => async (dispatch) => {
       payload: id,
     });
   } catch (err) {
-    console.log(err);
-    const error = err.response.data;
-    if (Array.isArray(error)) {
-      error.forEach((err) => alert(err.msg));
+
+    console.log(err)
+    const error=err.response.data
+    if(Array.isArray(error)){
+      error.forEach(err=>alert(err.msg))
+
     }
   }
 };

@@ -1,16 +1,23 @@
 import React, { Fragment } from 'react'
 import { useDispatch,useSelector} from 'react-redux'
 import {delteComment} from '../../js/action/PostsAction'
+import {delteCommentProf} from '../../js/action/ProfAction'
 import './Style.css'
 
-const Commenter = ({comment,postId}) => {
+const Commenter = ({comment,postId,prof}) => {
+   
 
       const user=useSelector(state=>state.authReducer.user)
        const dispatch=useDispatch()
 
     const onDelete=()=>{
          
-        dispatch(delteComment(postId,comment._id))
+        if(prof){
+             dispatch(delteCommentProf(postId,comment._id))
+         }else {
+            dispatch(delteComment(postId,comment._id))
+         }
+      
     }
 
     return (

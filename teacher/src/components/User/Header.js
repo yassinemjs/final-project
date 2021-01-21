@@ -52,7 +52,7 @@ export const Header = ({ user }) => {
           <p>Email : {user.email}</p>
           <p>
             Birthday :
-            {`${user.dateOfBirth.slice(0, 10)} / ${user.placeOfBirth}`}
+            {user.dateOfBirth?`${user.dateOfBirth.slice(0,10)} /${user.placeOfBirth}`:` / ${user.placeOfBirth}`}
           </p>
           <p>Number of children : {user.children}</p>
           <p>Civil status : {user.civil_status}</p>

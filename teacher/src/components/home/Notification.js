@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import {useDispatch,useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {getMessage} from '../../js/action/MessageAction'
+import {getMessage,clearMessage} from '../../js/action/MessageAction'
 
 import "./Style.css";
 
@@ -15,8 +15,11 @@ export const Notification = () => {
   useEffect(()=>{
      
     dispatch(getMessage())
+    
       
   },[dispatch])
+    
+ 
 
   if(loading && !msg){
     return (
@@ -32,10 +35,10 @@ export const Notification = () => {
         <p className="card-text">
          you have<span className="font-weight-bold">{` ${msg.length}`}</span>  messages from the administration
         </p>
-       <Link to='/profile/all-notification' > <button  className="btn btn-primary">
+      {msg.length==0? "": <Link to='/profile/all-notification' > <button  className="btn btn-primary">
           Read
         </button>
-        </Link>
+        </Link>}
         
       </div>
       

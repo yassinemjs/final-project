@@ -46,9 +46,10 @@ export const HomeApp = () => {
         </div>
         <div className="col-md-6 gedf-main">
           <AddPost />
-          {posts
-            ? posts[0].map((posts) => <Post posts={posts} user={user} />)
-            : "post not found"}
+
+         {posts.map(posts=> (<Post posts={posts} user={user} />) )}
+          
+
         </div>
         <div className=" calendre-profile">
           <Calendar />

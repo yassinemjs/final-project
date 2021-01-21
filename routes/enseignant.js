@@ -149,11 +149,11 @@ router.get("/all", authAdmin, async (req, res) => {
 // @Access   Private
 router.get("/:_id", authAdmin, async (req, res) => {
   try {
-    const prof = await Enseignant.findById(req.user.id).select("-password");
-    // .populate("grade");
-    // .populate("level")
-    // .populate("speciality")
-    // .populate("situation");
+    const prof = await Enseignant.findById(req.params._id).select("-password")
+     .populate("grade")
+     .populate("level")
+     .populate("speciality")
+    .populate("situation");
     res.json(prof);
   } catch (err) {
     res.status(500).send("Server Error");
