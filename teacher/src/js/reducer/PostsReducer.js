@@ -1,13 +1,26 @@
-import { POSTS_FAIL, POSTS_SUCCES, LIKE_POST,ADD_COMMENT,REMOVE_COMMENT,ADD_POST,REMOVE_POST } from '../action/Type'
+import {
+  POSTS_FAIL,
+  POSTS_SUCCES,
+  LIKE_POST,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
+  ADD_POST,
+  REMOVE_POST,
+ 
+} from "../action/Type";
 
 const initailState = {
+
     posts: null,
     userPost: [],
     loading: true,
 }
 
 
+
 const reducer = (state = initailState, action) => {
+  
+
 
     const { payload } = action
 
@@ -45,4 +58,6 @@ const reducer = (state = initailState, action) => {
 
 
 
-export default reducer
+  
+
+export default reducer;

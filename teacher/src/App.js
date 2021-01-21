@@ -1,4 +1,5 @@
 
+
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import {Provider} from 'react-redux'
@@ -19,28 +20,17 @@ import SetToken from './headers/SetToken'
  
 if(localStorage.token){
   SetToken(localStorage.token)
+
 }
 
 function App() {
-
- 
-  
-
-  useEffect(()=>{
-      
-     store.dispatch(loadUser())
-    
-      
-  }
-  ,[])
-
-  
-   
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
 
   return (
-
-  
     <Provider store={store}>
+
      <Router>
         
         <Route path="/" exact component={LoginPage} />  
@@ -58,6 +48,9 @@ function App() {
       </Switch>
       
     </Router> 
+
+
+    
 
     </Provider>
   );

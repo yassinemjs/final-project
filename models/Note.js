@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const NoteSchema = new mongoose.Schema({
   note: {
@@ -7,11 +7,11 @@ const NoteSchema = new mongoose.Schema({
   },
   inspector: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'inspector',
+    ref: "inspector",
   },
   enseignant: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'enseignant',
+    ref: "enseignant",
   },
   nature: {
     type: String,
@@ -23,4 +23,4 @@ const NoteSchema = new mongoose.Schema({
   },
 });
 
-module.exports = Note = mongoose.model('note', NoteSchema);
+module.exports = Note = mongoose.model("note", NoteSchema);
