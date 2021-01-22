@@ -6,9 +6,7 @@ import {
   REMOVE_COMMENT,
   ADD_POST,
   REMOVE_POST,
-  POST_SUCCES,
-  POST_FAIL,
-  DELETE_USER_POST,
+ 
 } from "../action/Type";
 
 const initailState = {
@@ -19,7 +17,8 @@ const initailState = {
 
 
 const reducer = (state = initailState, action) => {
-  const { payload } = action;
+  
+
 
     
 

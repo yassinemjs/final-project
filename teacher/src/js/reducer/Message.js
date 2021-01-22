@@ -16,19 +16,6 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const reducer =(state=initialState,action)=>{
-    
-    const{payload}=action
-    switch (action.type){
-        case MESSAGE_SUCCES:
-            return {...state,msg:payload,loading:false}
-        case MESSAGE_FAIL:
-            return {...state,loading:false}
-                
-      default:
-          return state
-    }
-}
 
 
 export default reducer
