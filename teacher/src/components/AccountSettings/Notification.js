@@ -46,7 +46,7 @@ export const Notification = () => {
                     type="checkbox"
                     class="custom-control-input"
                     id="customSwitch1"
-                    checked=""
+                   
                   />
                   <label
                     class="custom-control-label"

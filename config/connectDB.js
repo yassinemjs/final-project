@@ -6,6 +6,7 @@ const connect = () => {
     .connect(config.get('mongoURI'), {
       useUnifiedTopology: true,
       useNewUrlParser: true,
+      useFindAndModify: false ,
     })
     .then(() => console.log('Connected on mongoDB'))
     .catch((err) => console.error(err));

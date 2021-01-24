@@ -1,15 +1,16 @@
 import {
-  POSTS_FAIL,
-  POSTS_SUCCES,
+ 
   LIKE_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
   ADD_POST,
   REMOVE_POST,
+  PAGINATE_FAIL,
+  PAGINATE_SUCCES
 } from "./Type";
 import axios from "axios";
 
-export const getPost = () => async (dispatch) => {
+/* export const getPost = () => async (dispatch) => {
   try {
     const res = await axios.get("http://localhost:4000/api/post/all");
     dispatch({
@@ -22,7 +23,29 @@ export const getPost = () => async (dispatch) => {
       type: POSTS_FAIL,
     });
   }
+}; */
+
+export const getPosts = (form) => async (dispatch) => {
+  try {
+    const res = await axios.post("http://localhost:4000/api/post/paginate",form);
+    dispatch({
+      type: PAGINATE_SUCCES,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: PAGINATE_FAIL,
+    });
+  }
 };
+ 
+export const clearPosts=()=>dispatch=>{
+
+  dispatch({
+    type:PAGINATE_FAIL
+  })
+}
 
 export const likePost = (id, like) => async (dispatch) => {
   try {
@@ -91,6 +114,7 @@ export const addPost = (text) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
+    console.log(err)
     const error = err.response.data;
     if (Array.isArray(error)) {
       error.forEach((err) => alert(err.msg));

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import {likePost} from '../../js/action/PostsAction'
 import {addComment,deletePost} from '../../js/action/PostsAction'
 
+
 import Commenter from "./Commenter";
 import "./Style.css";
 
@@ -107,6 +108,7 @@ export const Post = ({posts,user}) => {
           </form>
         </>
       )}
+    
     </div>
   );
 };

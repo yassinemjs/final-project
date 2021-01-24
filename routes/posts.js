@@ -165,4 +165,25 @@ router.get("/:id", auth, async (req, res) => {
   }
 });
 
+router.post('/paginate',auth,async(req,res)=>{
+   
+     const {page,limit}=req.body
+  try {
+    const option={
+      page,
+      limit,
+      sort:{
+        date:-1,
+      }
+      
+  }
+        const post = await Posts.paginate({},option)
+        res.send(post)
+          
+  } catch (err) {
+    res.status(500).send([{msg:"server errror"}])
+  }
+
+})
+
 module.exports = router;

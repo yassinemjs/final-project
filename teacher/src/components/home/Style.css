@@ -122,3 +122,10 @@
     width: 82%;
    
 }
+
+
+.button-posts {
+  margin-left: 200px;
+ cursor: pointer;
+  color: steelblue;
+}

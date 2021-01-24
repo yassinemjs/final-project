@@ -6,12 +6,12 @@ import { Post } from "./Post";
 import { Notification } from "./Notification";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../js/action/authAction";
-import { getPost } from "../../js/action/PostsAction";
+import { getPosts,clearPosts } from "../../js/action/PostsAction";
+import ButtonPosts from "./ButtonPosts";
 import "./Style.css";
 
 export const HomeApp = () => {
   const user = useSelector((state) => state.authReducer.user);
-
   const loading = useSelector((state) => state.authReducer.loading);
   const posts = useSelector((state) => state.posts.posts);
   const isLoading = useSelector((state) => state.posts.loading);
@@ -19,7 +19,11 @@ export const HomeApp = () => {
 
   useEffect(() => {
     dispatch(loadUser());
-    dispatch(getPost());
+    
+    dispatch(getPosts({page:1,limit:2}))
+    return ()=>{
+      dispatch(clearPosts())
+    }
   }, [dispatch]);
 
   if (loading || !user) {
@@ -33,7 +37,7 @@ export const HomeApp = () => {
     return "user not found";
   }
   if (!posts) {
-    return "posts not found";
+    return <p>posts not found</p>;
   }
 
   return (
@@ -46,8 +50,8 @@ export const HomeApp = () => {
         </div>
         <div className="col-md-6 gedf-main">
           <AddPost />
-         {posts.map(posts=> (<Post posts={posts} user={user} />) )}
-          
+        {posts.map(posts=> posts.map(posts=> (<Post posts={posts} user={user} />) ))} 
+          <ButtonPosts />
         </div>
         <div className=" calendre-profile">
           <Calendar />

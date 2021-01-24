@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {useDispatch} from 'react-redux';
-import {withRouter} from 'react-router-dom'
+
 import {editPassword} from '../../js/action/EditTeacher'
 import "./AccountSettings.css";
 

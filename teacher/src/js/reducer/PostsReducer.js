@@ -1,54 +1,54 @@
 import {
-  POSTS_FAIL,
-  POSTS_SUCCES,
+  
   LIKE_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
   ADD_POST,
   REMOVE_POST,
+  PAGINATE_FAIL,
+  PAGINATE_SUCCES
  
 } from "../action/Type";
 
 const initailState = {
-    posts: null,
+    posts: [],
     userPost: [],
     loading: true,
+   
 }
 
 
 const reducer = (state = initailState, action) => {
   
+       const {payload}=action
 
+        switch (action.type) {
+        case PAGINATE_SUCCES:
+            return { ...state, posts:[...state.posts,payload.docs], loading: false,page:payload.totalPages }
+        case PAGINATE_FAIL:
+            return { ...state,posts:[],loading: false } 
 
-    
-
-
-    switch (action.type) {
-        case POSTS_SUCCES:
-            return { ...state, posts:payload, loading: false }
-        case POSTS_FAIL:
-            return { ...state, loading: false }
-        case LIKE_POST:
+       case LIKE_POST:
             return {
                 ...state,
-                posts: state.posts.map(post => post._id === payload.id ? { ...post, like: payload.likes } : post)
+                posts: state.posts.map(post =>post.map(post=>post._id === payload.id ? { ...post, like: payload.likes } : post))
                
             }
 
         case ADD_COMMENT:
             return {
                 ...state,
-                posts: state.posts.map(post =>post._id === payload.id ? { ...post, comment: payload.comment } : post)
+                posts: state.posts.map(post=>post.map(post=>post._id === payload.id ? { ...post, comment: payload.comment } : post))
                 
             }
          case REMOVE_COMMENT:
              return {...state,
-                 posts:state.posts.map(post=>post._id===payload.idPost?{...post,comment:post.comment.filter(comment=>comment._id.toString()!==payload.idComment)}:post)
+                 posts:state.posts.map(post=>post.map(post=>post._id===payload.idPost?{...post,comment:post.comment.filter(comment=>comment._id.toString()!==payload.idComment)}:post))
                 } 
           case ADD_POST:
-              return {...state,posts:[payload,...state.posts]} 
+              return {...state,posts:state.posts.map(post=>[payload,...post])}
           case REMOVE_POST:
-              return {...state,posts:state.posts.filter(post=>post._id!==payload)}           
+              return {...state,posts:state.posts.map(post=>post.filter(post=>post._id!==payload))}           
         default:
             return state
     }
