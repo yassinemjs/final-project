@@ -10,12 +10,10 @@ const reducer = (state = initialState, action) => {
     case MESSAGE_SUCCES:
       return { ...state, msg: payload, loading: false };
     case MESSAGE_FAIL:
-      return { ...state,msg:null, loading: false };
+      return { ...state, msg: [], loading: false };
     default:
       return state;
   }
 };
 
-
-
-export default reducer
+export default reducer;
