@@ -99,6 +99,8 @@ const Filter = () => {
           e.preventDefault();
           dispatch(filterLevel(lev));
           dispatch(filterGrade(grd));
+          dispatch(filterSpeciality(spec));
+          dispatch(filterSituation(sit));
         }}
         noValidate
       >
@@ -111,7 +113,6 @@ const Filter = () => {
                 setGrd(e.value);
                 console.log(grd);
               }}
-              value={grd}
             />
           </MDBCol>
 
