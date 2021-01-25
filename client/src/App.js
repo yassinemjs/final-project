@@ -5,6 +5,7 @@ import AddEns from './Components/dashboard/AddEns';
 import Login from './Components/forms/Login';
 import EnsList from './Components/dashboard/EnsList';
 import Alert from './Components/layout/Alert';
+import Update from './Components/dashboard/Update';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
@@ -12,12 +13,14 @@ import PrivateRoute from './routing/PrivateRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
 const App = () => {
   useEffect(() => {
     // check for token in LS
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-    }
+
     store.dispatch(loadUser());
   }, []);
 
@@ -31,7 +34,8 @@ const App = () => {
             <Route exact path='/login' component={Login} />
             <PrivateRoute exact path='/addEns' component={AddEns} />
             <PrivateRoute exact path='/filter' component={Filter} />
-            <PrivateRoute exact path='/home' component={EnsList} />
+            <Route exact path='/home' component={EnsList} />
+            <PrivateRoute exact path='/update' component={Update} />
           </Switch>
         </section>
       </Fragment>

@@ -1,59 +1,34 @@
-import React, { Component } from "react";
-import {
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarNav,
-  MDBNavItem,
-  MDBNavLink,
-  MDBNavbarToggler,
-  MDBCollapse,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBIcon,
-} from "mdbreact";
-import "./NavBar.css";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from 'react'
+import Drap from '../asset/drap.png'
+import {Link} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import {logOut} from '../../js/action/authAction'
+import './NavBar.css'
 
-class NavbarPage extends Component {
-  state = {
-    isOpen: false,
-  };
+const NavBarTest = () => {
 
-  toggleCollapse = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  };
+        const dispatch=useDispatch()
 
-  render() {
+        const onClickOut=()=>{
+            dispatch(logOut())
+        }
+
     return (
-      <Router>
-        <MDBNavbar color="default-color" dark expand="md">
-          <MDBNavbarBrand>
-            <strong className="white-text">Navbar</strong>
-          </MDBNavbarBrand>
-          <MDBNavbarToggler onClick={this.toggleCollapse} />
-          <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-            <MDBNavbarNav left></MDBNavbarNav>
-            <MDBNavbarNav right>
-              <MDBNavItem>
-                <MDBDropdown>
-                  <MDBDropdownToggle nav caret>
-                    <MDBIcon icon="user" />
-                  </MDBDropdownToggle>
-                  <MDBDropdownMenu className="dropdown-default">
-                    <MDBNavLink to="#!">Profile</MDBNavLink>
-                    <MDBNavLink to="#!">Profile Settings</MDBNavLink>
-                    <MDBDropdownItem href="#!">Log out</MDBDropdownItem>
-                  </MDBDropdownMenu>
-                </MDBDropdown>
-              </MDBNavItem>
-            </MDBNavbarNav>
-          </MDBCollapse>
-        </MDBNavbar>
-      </Router>
-    );
-  }
+        <div className='navbar'>
+            <img src={Drap} alt="drap" />
+            <div className='user-position ' >
+            
+                   <Link className='mr-5 lien' to='/profile'><i className="fas fa-home mr-2"></i></Link>
+                   <Link className='mr-5 lien' to='/profile/user'><i className="fas fa-user mr-2"></i></Link>
+                    <Link className='mr-5 lien' to='/profile/settings'><i className="fas fa-cogs mr-2"></i></Link>
+                    <Link className='mr-5 lien' to='/' onClick={onClickOut} ><i className="fas fa-sign-out-alt mr-2"></i>logout</Link>
+            
+            </div>
+            
+        </div>
+    )
 }
 
-export default NavbarPage;
+
+
+export default NavBarTest

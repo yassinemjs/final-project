@@ -5,6 +5,7 @@ const jwt =require('jsonwebtoken')
 const bcrypt= require('bcryptjs')
 const {check,validationResult}=require('express-validator')
 const config=require('config')
+const auth =require('../middleware/authAdmin')
 const Ensaignant=require('../models/Enseignant')
 
 
@@ -26,8 +27,8 @@ router.post('/auth',
            const mdp = await bcrypt.compare(password,prof.password)
            if(!mdp) {return res.status(400).send([{msg:'Invalid Credentials'}])}
 
-           const profile= await Ensaignant.findOne({_id:prof._id}).populate('grade').
-           populate('level')
+           const profile= await Ensaignant.findOne({_id:prof._id}).select('-password').populate('grade').
+           populate('level').populate('situation').populate('speciality')
            
      const payload={
          user:{
@@ -48,6 +49,19 @@ router.post('/auth',
 
 })
 
+// http://localhost:4000/api/prof/me  *get profile *private
+router.get('/user',auth,async(req,res)=>{
+    try {
+
+        const prof=await Ensaignant.findById(req.user.id).select('-password').populate('grade').
+        populate('level').populate('situation').populate('speciality')
+
+        res.send(prof)
+        
+    } catch (err) {
+        res.status(500).send([{msg:'server error'}])
+    }
+})
 
 
 module.exports=router

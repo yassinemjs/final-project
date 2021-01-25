@@ -1,15 +1,38 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
-import { getAllEns } from '../../actions/prof';
-import { connect } from 'react-redux';
-import { MDBDataTable } from 'mdbreact';
+import {
+  getAllEns,
+  filterGrade,
+  filterLevel,
+  filterSituation,
+  filterSpeciality,
+} from '../../actions/prof';
 
-const Filter = ({ getAllEns, prof: { teachers } }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { MDBDataTable, MDBAlert, MDBBtn, MDBRow, MDBCol } from 'mdbreact';
+
+const Filter = () => {
   const [grade, setGrade] = useState([]);
   const [level, setLevel] = useState([]);
   const [situation, setSituation] = useState([]);
   const [speciality, setSpeciality] = useState([]);
+
+  const teachers = useSelector((state) => state.prof.teachers);
+  const loading = useSelector((state) => state.prof.loading);
+  const dispatch = useDispatch();
+
+  const [grd, setGrd] = useState('');
+  const [sit, setSit] = useState('');
+  const [spec, setSpec] = useState('');
+  const [lev, setLev] = useState('');
+  const reset = () => {
+    setGrd('');
+  };
+
+  useEffect(() => {
+    dispatch(getAllEns());
+  }, [getAllEns]);
 
   const data = {
     columns: [
@@ -49,18 +72,9 @@ const Filter = ({ getAllEns, prof: { teachers } }) => {
         sort: 'asc',
         width: 100,
       },
-      {
-        name: 'Show details',
-        button:
-          "<button class='btn btn-primary table-button'>See more</button>",
-      },
     ],
     rows: teachers,
   };
-
-  useEffect(() => {
-    getAllEns();
-  }, [getAllEns]);
 
   useEffect(async () => {
     const gr = await axios.get('api/grade');
@@ -73,16 +87,80 @@ const Filter = ({ getAllEns, prof: { teachers } }) => {
     setLevel(le.data);
   }, [getAllEns]);
 
+  if (loading || !teachers) {
+    return <MDBAlert color='success'>....Loading</MDBAlert>;
+  }
+
   return (
     <div className='filter'>
-      <Select options={grade.map((t) => ({ value: t._id, label: t.grade }))} />
-      <Select options={level.map((t) => ({ value: t._id, label: t.level }))} />
-      <Select
-        options={situation.map((t) => ({ value: t._id, label: t.situation }))}
-      />
-      <Select
-        options={speciality.map((t) => ({ value: t._id, label: t.speciality }))}
-      />
+      <form
+        className='needs-validation'
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(filterLevel(lev));
+          dispatch(filterGrade(grd));
+        }}
+        noValidate
+      >
+        <MDBRow>
+          <MDBCol md='6' className='mb-3'>
+            <label className='text-info'>By Grade</label>
+            <Select
+              options={grade.map((t) => ({ value: t._id, label: t.grade }))}
+              onChange={(e) => {
+                setGrd(e.value);
+                console.log(grd);
+              }}
+              value={grd}
+            />
+          </MDBCol>
+
+          <MDBCol md='6' className='mb-3'>
+            <label className='text-info'>By Level</label>
+            <Select
+              options={level.map((t) => ({ value: t._id, label: t.level }))}
+              onChange={(e) => {
+                setLev(e.value);
+              }}
+            />
+          </MDBCol>
+        </MDBRow>
+        <MDBRow>
+          <MDBCol md='6' className='mb-3'>
+            <label className='text-info'>By Situation</label>
+            <Select
+              options={situation.map((t) => ({
+                value: t._id,
+                label: t.situation,
+              }))}
+              onChange={(e) => {
+                setSit(e.value);
+              }}
+            />
+          </MDBCol>
+          <MDBCol md='6' className='mb-3'>
+            <label className='text-info'>By Speciality</label>
+            <Select
+              options={speciality.map((t) => ({
+                value: t._id,
+                label: t.speciality,
+              }))}
+              onChange={(e) => {
+                setSpec(e.value);
+              }}
+            />
+          </MDBCol>
+        </MDBRow>
+        <MDBBtn color='primary' type='submit'>
+          submit
+        </MDBBtn>
+        <MDBBtn color='secondary' onClick={reset}>
+          reset
+        </MDBBtn>
+      </form>
+      <div>
+        <MDBAlert color='dark'>Total :{teachers.length}</MDBAlert>
+      </div>
       <div className='datalist'>
         <MDBDataTable striped bordered small data={data} />
       </div>
@@ -90,8 +168,4 @@ const Filter = ({ getAllEns, prof: { teachers } }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  prof: state.prof,
-});
-
-export default connect(mapStateToProps, { getAllEns })(Filter);
+export default Filter;

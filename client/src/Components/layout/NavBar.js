@@ -49,7 +49,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
-            <MDBNavLink to='#!'>
+            <MDBNavLink to='/update'>
               <MDBIcon far icon='edit' />
               <strong>Update</strong>
             </MDBNavLink>

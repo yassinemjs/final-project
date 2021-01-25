@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { NavbarSetiings } from "./NavbarSetiings";
 import { ProfileInformation } from "./ProfileInformation";
-import { Security } from "./Security";
+import Security  from "./Security";
 import { Settings } from "./Settings";
 import { Notification } from "./Notification";
 import "./AccountSettings.css";
@@ -24,17 +24,9 @@ export const AccountSettings = () => {
             <div class="card">
               <div class="card-body tab-content">
                 <Switch>
-                  <Route
-                    exact
-                    path="/settings"
-                    component={ProfileInformation}
-                  />
-                  <Route
-                    path="/settings/accountsettings"
-                    component={Settings}
-                  />
-                  <Route path="/settings/security" component={Security} />
-                  <Route path="/settings/notif" component={Notification} />
+                 
+                  <Route path="/profile/settings" component={Security} />
+                  
                 </Switch>
               </div>
             </div>

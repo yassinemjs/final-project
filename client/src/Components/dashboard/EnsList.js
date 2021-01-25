@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import EnsCard from './EnsCard';
-import { getAllEns } from '../../actions/prof';
-import { connect } from 'react-redux';
+
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 
-const EnsList = ({ getAllEns, prof: { teachers } }) => {
+const EnsList = () => {
   const [offset, setOffset] = useState(0);
   const [data, setData] = useState([]);
   const [perPage] = useState(5);
@@ -51,8 +50,4 @@ const EnsList = ({ getAllEns, prof: { teachers } }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  prof: state.prof,
-});
-
-export default connect(mapStateToProps, { getAllEns })(EnsList);
+export default EnsList;
