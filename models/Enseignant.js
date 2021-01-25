@@ -60,6 +60,10 @@ const EnseignantSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "speciality",
   },
+  image: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "image",
+  },
   status: {
     type: String,
   },
