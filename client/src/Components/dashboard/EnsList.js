@@ -29,10 +29,12 @@ const EnsList = () => {
   useEffect(() => {
     getData();
   }, [offset]);
+  console.log(data);
 
   return (
     <div className='App'>
       {data}
+
       <ReactPaginate
         previousLabel={'prev'}
         nextLabel={'next'}

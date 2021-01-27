@@ -17,3 +17,6 @@ export const FILTER_GRADE = 'FILTER_GRADE';
 export const FILTER_LEVEL = 'FILTER_LEVEL';
 export const FILTER_SPECIALITY = 'FILTER_SPECIALITY';
 export const FILTER_SITUATION = 'FILTER_SITUATION';
+export const GET_NOTES = 'GET_NOTES';
+export const ADD_NOTE = 'ADD_NOTE';
+export const CLEAR_PROF = 'CLEAR_PROF';
