@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from 'react';
 import Logo from '../../assets/Logo.png';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
@@ -25,7 +24,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <MDBNavbar color='default-color' dark expand='md'>
       <MDBNavbarBrand>
-        <img src={Logo} />
+        <img src={Logo} alt='logo' />
       </MDBNavbarBrand>
       <MDBNavbarToggler onClick={toggleCollapse} />
       <MDBCollapse id='navbarCollapse3' isOpen={isOpen} navbar>
@@ -49,9 +48,9 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
-            <MDBNavLink to='/update'>
-              <MDBIcon far icon='edit' />
-              <strong>Update</strong>
+            <MDBNavLink to='/notes'>
+              <MDBIcon icon='notes-medical' />
+              <strong>Notes</strong>
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
@@ -62,7 +61,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </MDBNavItem>
         </MDBNavbarNav>
         <MDBNavbarNav right>
-          <a onClick={logout}>
+          <a href='/' onClick={logout}>
             <i class='fas fa-sign-out-alt'></i>
             <strong>Logout</strong>{' '}
           </a>
@@ -74,7 +73,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <MDBNavbar color='default-color' dark expand='md'>
       <MDBNavbarBrand>
-        <img src={Logo} />
+        <img src={Logo} alt='logo' />
       </MDBNavbarBrand>
       <MDBNavbarToggler onClick={toggleCollapse} />
       <MDBCollapse id='navbarCollapse3' isOpen={isOpen} navbar>

@@ -8,15 +8,18 @@ import {
   FILTER_LEVEL,
   FILTER_SITUATION,
   FILTER_SPECIALITY,
+  CLEAR_PROF,
 } from '../actions/types';
 
 const initialState = {
   teachers: [],
+
   teacher: null,
   loading: true,
   error: {},
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
@@ -34,33 +37,43 @@ export default function (state = initialState, action) {
     case ENS_ERROR:
       return { loading: false, error: payload };
     case FILTER_GRADE:
-      return {
-        ...state,
-        teachers: state.teachers
-          .filter((el) => el.grade != null)
-          .filter((el) => el.grade._id == payload),
-      };
+      return payload
+        ? {
+            ...state,
+            profs: state.teachers
+              .filter((el) => el.grade != null)
+              .filter((el) => el.grade._id === payload),
+          }
+        : state;
     case FILTER_SITUATION:
-      return {
-        ...state,
-        teachers: state.teachers
-          .filter((el) => el.situation != null)
-          .filter((el) => el.situation._id == payload),
-      };
+      return payload
+        ? {
+            ...state,
+            profs: state.teachers
+              .filter((el) => el.situation != null)
+              .filter((el) => el.situation._id === payload),
+          }
+        : state;
     case FILTER_LEVEL:
-      return {
-        ...state,
-        teachers: state.teachers
-          .filter((el) => el.level != null)
-          .filter((el) => el.level._id == payload),
-      };
+      return payload
+        ? {
+            ...state,
+            profs: state.teachers
+              .filter((el) => el.level != null)
+              .filter((el) => el.level._id === payload),
+          }
+        : state;
     case FILTER_SPECIALITY:
-      return {
-        ...state,
-        teachers: state.teachers
-          .filter((el) => el.speciality != null)
-          .filter((el) => el.speciality._id == payload),
-      };
+      return payload
+        ? {
+            ...state,
+            profs: state.teachers
+              .filter((el) => el.speciality != null)
+              .filter((el) => el.speciality._id === payload),
+          }
+        : state;
+    case CLEAR_PROF:
+      return { ...state, profs: [], loading: false };
     default:
       return state;
   }

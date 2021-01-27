@@ -5,7 +5,7 @@ import AddEns from './Components/dashboard/AddEns';
 import Login from './Components/forms/Login';
 import EnsList from './Components/dashboard/EnsList';
 import Alert from './Components/layout/Alert';
-import Update from './Components/dashboard/Update';
+import Note from './Components/dashboard/Note';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
@@ -34,8 +34,8 @@ const App = () => {
             <Route exact path='/login' component={Login} />
             <PrivateRoute exact path='/addEns' component={AddEns} />
             <PrivateRoute exact path='/filter' component={Filter} />
-            <Route exact path='/home' component={EnsList} />
-            <PrivateRoute exact path='/update' component={Update} />
+            <PrivateRoute exact path='/home' component={EnsList} />
+            <PrivateRoute exact path='/notes' component={Note} />
           </Switch>
         </section>
       </Fragment>

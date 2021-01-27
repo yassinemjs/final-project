@@ -8,6 +8,7 @@ import {
   FILTER_LEVEL,
   FILTER_SITUATION,
   FILTER_SPECIALITY,
+  CLEAR_PROF,
 } from './types';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -143,4 +144,10 @@ export const filterSituation = (situation) => async (dispatch) => {
       error.forEach((err) => alert(err.msg));
     }
   }
+};
+
+export const profClear = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_PROF,
+  });
 };

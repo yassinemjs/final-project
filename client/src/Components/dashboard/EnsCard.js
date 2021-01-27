@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import {
   MDBListGroup,
   MDBListGroupItem,
-  MDBInput,
   MDBCard,
   MDBIcon,
   MDBCardTitle,
@@ -43,6 +42,7 @@ const EnsCard = ({
     situation,
     status,
     recruitement_date,
+    img,
   },
 }) => {
   const [titre, setTitre] = useState([]);
@@ -102,6 +102,7 @@ const EnsCard = ({
     setModal(!modal);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     const gr = await axios.get('api/grade');
     const sp = await axios.get('api/speciality');
@@ -124,7 +125,11 @@ const EnsCard = ({
       <MDBCard>
         <div className='round-img'>
           <MDBCardImage
-            src='https://www.bootdey.com/img/Content/avatar/avatar6.png'
+            src={
+              img
+                ? img
+                : 'https://www.bootdey.com/img/Content/avatar/avatar6.png'
+            }
             alt='MDBCard image cap'
             top
             hover
