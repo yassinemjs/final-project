@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
+import Header from '../layout/Header';
 import {
   getAllEns,
   filterGrade,
@@ -35,6 +36,7 @@ const Filter = () => {
   useEffect(() => {
     dispatch(getAllEns());
   }, [dispatch]);
+  console.log(teachers);
 
   const data = {
     columns: [
@@ -96,6 +98,7 @@ const Filter = () => {
 
   return (
     <div className='filter'>
+      <Header title='Teachers  Statistics' />
       <form
         className='needs-validation'
         onSubmit={(e) => {

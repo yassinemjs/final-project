@@ -20,3 +20,6 @@ export const FILTER_SITUATION = 'FILTER_SITUATION';
 export const GET_NOTES = 'GET_NOTES';
 export const ADD_NOTE = 'ADD_NOTE';
 export const CLEAR_PROF = 'CLEAR_PROF';
+export const GET_POSTS = 'GET_POSTS';
+export const REMOVE_POST = 'REMOVE_POST';
+export const POSTS_FAIL = 'POSTS_FAIL';

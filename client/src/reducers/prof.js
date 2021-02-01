@@ -13,7 +13,7 @@ import {
 
 const initialState = {
   teachers: [],
-
+  profs: [],
   teacher: null,
   loading: true,
   error: {},
