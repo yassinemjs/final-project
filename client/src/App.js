@@ -3,9 +3,10 @@ import NavBar from './Components/layout/NavBar';
 import Filter from './Components/dashboard/Filter';
 import AddEns from './Components/dashboard/AddEns';
 import Login from './Components/forms/Login';
-import EnsList from './Components/dashboard/EnsList';
 import Alert from './Components/layout/Alert';
 import Note from './Components/dashboard/Note';
+import Posts from './Components/dashboard/Posts';
+import Home from './Components/home/Home';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
@@ -34,8 +35,9 @@ const App = () => {
             <Route exact path='/login' component={Login} />
             <PrivateRoute exact path='/addEns' component={AddEns} />
             <PrivateRoute exact path='/filter' component={Filter} />
-            <PrivateRoute exact path='/home' component={EnsList} />
+            <PrivateRoute exact path='/home' component={Home} />
             <PrivateRoute exact path='/notes' component={Note} />
+            <PrivateRoute exact path='/posts' component={Posts} />
           </Switch>
         </section>
       </Fragment>

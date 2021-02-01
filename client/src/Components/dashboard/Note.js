@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNotes } from '../../actions/note';
 import { MDBDataTable, MDBAlert } from 'mdbreact';
+import Header from '../layout/Header';
 
 const Note = () => {
   const dispatch = useDispatch();
@@ -75,9 +76,7 @@ const Note = () => {
   }
   return (
     <div>
-      <MDBAlert color='warning'>
-        <strong>TEACHER'S INSPECTION </strong>
-      </MDBAlert>
+      <Header title='Teachers Inspection' />
       <MDBDataTable striped bordered small data={data} />
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 import { updateEns } from '../../actions/prof';
+import Alert from '../layout/Alert';
 import { useDispatch } from 'react-redux';
 import {
   MDBListGroup,
@@ -117,19 +118,15 @@ const EnsCard = ({
   return (
     <div
       style={{
-        maxWidth: '35rem',
-        maxHeight: '50',
+        maxWidth: '30rem',
+        maxHeight: '50rem',
         padding: '1rem',
       }}
     >
       <MDBCard>
         <div className='round-img'>
           <MDBCardImage
-            src={
-              img
-                ? img
-                : 'https://www.bootdey.com/img/Content/avatar/avatar6.png'
-            }
+            src='https://www.bootdey.com/img/Content/avatar/avatar6.png'
             alt='MDBCard image cap'
             top
             hover
@@ -137,32 +134,57 @@ const EnsCard = ({
           />
         </div>
         <MDBCardBody>
-          <MDBCardTitle tag='h5'>{`${name} ${lastName}`}</MDBCardTitle>
-          <MDBListGroup className='my-4 mx-4' style={{ width: '25' }}>
-            <MDBListGroupItem tag='h3' className='pt-2' color='danger' hover>
+          <MDBCardTitle tag='h5'>
+            <strong>{`${name} ${lastName}`}</strong>
+          </MDBCardTitle>
+          <MDBListGroup className='my-4 mx-4' style={{ padding: 7 }}>
+            <MDBListGroupItem
+              tag='h2'
+              className='pt-4'
+              color='danger'
+              style={{ margin: 2 }}
+              hover
+            >
               <MDBIcon icon='id-card' />
-              {id_unique}
+              {` ${id_unique}`}
             </MDBListGroupItem>
-            <MDBListGroupItem color='dark' tag='h5' hover>
+            <MDBListGroupItem
+              color='primary'
+              tag='h4'
+              hover
+              style={{ margin: 2 }}
+            >
               <MDBIcon icon='phone-alt' />
-              {phone}
+              {` ${phone}`}
             </MDBListGroupItem>
-            <MDBListGroupItem color='primary' tag='h4' hover>
+            <MDBListGroupItem
+              color='danger'
+              tag='h4'
+              style={{ margin: 2 }}
+              hover
+            >
               <MDBIcon icon='envelope' />
-              {email}
+              {` ${email}`}
             </MDBListGroupItem>
-            <MDBListGroupItem color='primary' tag='h4' hover>
+            <MDBListGroupItem
+              color='primary'
+              tag='h4'
+              style={{ margin: 2 }}
+              hover
+            >
               <MDBIcon icon='user-graduate' />
-              {!grade ? '' : grade.grade}
+              {` ${!grade ? '' : grade.grade}`}
             </MDBListGroupItem>
           </MDBListGroup>
         </MDBCardBody>
         <MDBContainer
           style={{
-            margin: '1rem',
+            margin: 25,
           }}
         >
-          <MDBBtn onClick={toggle}>Show details && Update</MDBBtn>
+          <MDBBtn style={{ padding: 20, margin: -5 }} onClick={toggle}>
+            <strong>Show details && Update</strong>
+          </MDBBtn>
           <MDBModal
             className='modal-dialog modal-xl'
             isOpen={modal}
@@ -433,7 +455,7 @@ const EnsCard = ({
                       }
                       options={lieu.map((t) => ({
                         value: t._id,
-                        label: t.leve,
+                        label: t.level,
                       }))}
                     />
                   </MDBCol>
@@ -471,29 +493,11 @@ const EnsCard = ({
                     />
                   </MDBCol>
                 </MDBRow>
-                <MDBCol md='4' className='mb-3'>
-                  <div className='custom-control custom-checkbox pl-3'>
-                    <input
-                      className='custom-control-input'
-                      type='checkbox'
-                      value=''
-                      id='invalidCheck'
-                      required
-                    />
-                    <label
-                      className='custom-control-label'
-                      htmlFor='invalidCheck'
-                    >
-                      Agree to terms and conditions
-                    </label>
-                    <div className='invalid-feedback'>
-                      You must agree before submitting.
-                    </div>
-                  </div>
-                </MDBCol>
+
                 <MDBBtn color='primary' onClick={onsubmit} type='submit'>
                   Update prof
                 </MDBBtn>
+                <Alert />
               </form>
             </MDBModalBody>
             <MDBModalFooter>

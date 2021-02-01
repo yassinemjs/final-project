@@ -9,6 +9,7 @@ import {
   MDBIcon,
   MDBInput,
 } from 'mdbreact';
+import Header from '../layout/Header';
 
 const AddEns = ({ createEns }) => {
   const [formData, setFormData] = useState({
@@ -28,10 +29,10 @@ const AddEns = ({ createEns }) => {
   };
   return (
     <MDBContainer>
+      <Header title='Add new Teacher' />
       <MDBRow>
         <MDBCol md='6'>
           <form>
-            <p className='h5 text-center mb-4'>ADD NEW TEACHER</p>
             <div className='grey-text'>
               <MDBInput
                 label='Identifiant Unique'

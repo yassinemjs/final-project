@@ -54,7 +54,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
-            <MDBNavLink to='#!'>
+            <MDBNavLink to='/posts'>
               <MDBIcon icon='file-signature' />
               <strong>Posts</strong>
             </MDBNavLink>

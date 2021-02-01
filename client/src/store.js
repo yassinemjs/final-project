@@ -5,8 +5,9 @@ import auth from './reducers/auth';
 import alert from './reducers/alert';
 import prof from './reducers/prof';
 import note from './reducers/note';
+import post from './reducers/post';
 
-const reducer = combineReducers({ prof, auth, alert, note });
+const reducer = combineReducers({ prof, auth, alert, note, post });
 
 const initialState = {};
 
