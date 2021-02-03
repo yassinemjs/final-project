@@ -82,10 +82,11 @@ const EnsList = ({ data, itemsPerPage, startFrom, searchByData }) => {
       )}
       {slicedData.length > 0 ? (
         <Fragment>
-          {slicedData.map((teacher) => (
-            <EnsCard key={teacher._id} prof={teacher} />
-          ))}
-
+          <div className='listcard'>
+            {slicedData.map((teacher) => (
+              <EnsCard key={teacher._id} prof={teacher} />
+            ))}
+          </div>
           <nav className='pagination'>
             <a href='/#' className='pagination-previous' onClick={prevPage}>
               Previous

@@ -15,13 +15,10 @@ router.post(
   [
     authAdmin,
     [
+      check('id_unique', 'id unique is required').not().isEmpty(),
       check('name', 'name is required').not().isEmpty(),
       check('lastName', 'last  name is required').not().isEmpty(),
       check('email', 'eamil is required').isEmail(),
-      //  check('grade', 'grade is required').not().isEmpty(),
-      //  check('level', 'level is required').not().isEmpty(),
-      // check('situation', 'situation is required').not().isEmpty(),
-      // check('speciality', 'speciality is required').not().isEmpty(),
       check('password', 'password is require minimum 6 characters').isLength({
         min: 6,
       }),
