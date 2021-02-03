@@ -14,10 +14,6 @@ import {
   MDBCardImage,
   MDBCardBody,
   MDBContainer,
-  MDBModal,
-  MDBModalBody,
-  MDBModalHeader,
-  MDBModalFooter,
   MDBRow,
   MDBCol,
 } from 'mdbreact';
@@ -103,6 +99,8 @@ const EnsCard = ({
     setModal(!modal);
   };
 
+  const active = modal ? 'is-active' : '';
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     const gr = await axios.get('api/grade');
@@ -118,9 +116,8 @@ const EnsCard = ({
   return (
     <div
       style={{
-        maxWidth: '30rem',
-        maxHeight: '50rem',
-        padding: '1rem',
+        width: '25rem',
+        height: '45rem',
       }}
     >
       <MDBCard>
@@ -155,7 +152,7 @@ const EnsCard = ({
               style={{ margin: 2 }}
             >
               <MDBIcon icon='phone-alt' />
-              {` ${phone}`}
+              {phone}
             </MDBListGroupItem>
             <MDBListGroupItem
               color='danger'
@@ -185,327 +182,334 @@ const EnsCard = ({
           <MDBBtn style={{ padding: 20, margin: -5 }} onClick={toggle}>
             <strong>Show details && Update</strong>
           </MDBBtn>
-          <MDBModal
-            className='modal-dialog modal-xl'
-            isOpen={modal}
-            toggle={toggle}
-          >
-            <MDBModalHeader toggle={toggle}>ENSEIGNANT INFOS</MDBModalHeader>
-            <MDBModalBody>
-              {' '}
-              <form className='needs-validation' noValidate>
-                <MDBRow>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterNameEx'
-                      className='grey-text'
-                    >
-                      First name
-                    </label>
-                    <input
-                      value={formData.name}
-                      name='name'
-                      onChange={onChange}
-                      type='text'
-                      id='defaultFormRegisterNameEx'
-                      className='form-control'
-                      placeholder='First name'
-                      required
-                    />
-                    <div className='valid-feedback'>Looks good!</div>
-                  </MDBCol>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterEmailEx2'
-                      className='grey-text'
-                    >
-                      Last name
-                    </label>
-                    <input
-                      value={formData.lastName}
-                      name='lastName'
-                      onChange={onChange}
-                      type='text'
-                      id='defaultFormRegisterEmailEx2'
-                      className='form-control'
-                      placeholder='Last name'
-                      required
-                    />
-                    <div className='valid-feedback'>Looks good!</div>
-                  </MDBCol>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterConfirmEx3'
-                      className='grey-text'
-                    >
-                      Email
-                    </label>
-                    <input
-                      value={formData.email}
-                      type='email'
-                      onChange={onChange}
-                      id='defaultFormRegisterConfirmEx3'
-                      className='form-control'
-                      name='email'
-                      placeholder='Your Email address'
-                    />
-                    <small id='emailHelp' className='form-text text-muted'>
-                      We'll never share your email with anyone else.
-                    </small>
-                  </MDBCol>
-                </MDBRow>
-                <MDBRow>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      phone
-                    </label>
-                    <input
-                      value={formData.phone}
-                      onChange={onChange}
-                      type='text'
-                      id='defaultFormRegisterPasswordEx4'
-                      className='form-control'
-                      name='phone'
-                      placeholder='phone'
-                      required
-                    />
-                  </MDBCol>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      Adress
-                    </label>
-                    <input
-                      value={formData.adresse}
-                      onChange={onChange}
-                      type='text'
-                      id='defaultFormRegisterPasswordEx4'
-                      className='form-control'
-                      name='adresse'
-                      placeholder='Adress'
-                      required
-                    />
-                  </MDBCol>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      Civil Status
-                    </label>
-                    <Select
-                      defaultInputValue={formData.civil_status}
-                      options={options_civil_status}
-                      onChange={(e) => {
-                        setFormData({ ...formData, civil_status: e.value });
-                      }}
-                    />
-                  </MDBCol>
-                </MDBRow>
-                <MDBRow>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      children
-                    </label>
-                    <input
-                      onChange={onChange}
-                      value={formData.children}
-                      type='text'
-                      id='defaultFormRegisterPasswordEx4'
-                      className='form-control'
-                      name='children'
-                      placeholder='children'
-                      required
-                    />
-                  </MDBCol>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      sexe
-                    </label>
-                    <Select
-                      defaultInputValue={formData.sexe}
-                      options={options_sexe}
-                      onChange={(e) => {
-                        setFormData({ ...formData, sexe: e.value });
-                      }}
-                    />
-                  </MDBCol>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      Date of Birth
-                    </label>
-                    <input
-                      type='date'
-                      placeholder='YYYY-MM-DD'
-                      value={formData.dateOfBirth}
-                      name='dateOfBirth'
-                      onChange={onChange}
-                      className='form-control'
-                      required
-                    />
-                  </MDBCol>
-                </MDBRow>
-                <MDBRow>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      Place of Birth
-                    </label>
-                    <input
-                      onChange={onChange}
-                      value={formData.placeOfBirth}
-                      type='text'
-                      id='defaultFormRegisterPasswordEx4'
-                      className='form-control'
-                      name='placeOfBirth'
-                      placeholder='place of birth'
-                      required
-                    />
-                  </MDBCol>
-                </MDBRow>
-                <br />
-                <MDBRow>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      speciality
-                    </label>
-                    <Select
-                      defaultInputValue={
-                        !formData.speciality
-                          ? ''
-                          : formData.speciality.speciality
-                      }
-                      onChange={(e) =>
-                        setFormData({ ...formData, speciality: e.value })
-                      }
-                      options={spec.map((t) => ({
-                        value: t._id,
-                        label: t.speciality,
-                      }))}
-                    />
-                  </MDBCol>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      situation
-                    </label>
-                    <Select
-                      defaultInputValue={!situation ? '' : situation.situation}
-                      onChange={(e) =>
-                        setFormData({ ...formData, situation: e.value })
-                      }
-                      options={etat.map((t) => ({
-                        value: t._id,
-                        label: t.situation,
-                      }))}
-                    />
-                  </MDBCol>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      Grade
-                    </label>
-                    <Select
-                      defaultInputValue={!grade ? '' : grade.grade}
-                      onChange={(e) =>
-                        setFormData({ ...formData, grade: e.value })
-                      }
-                      options={titre.map((t) => ({
-                        value: t._id,
-                        label: t.grade,
-                      }))}
-                    />
-                  </MDBCol>
-                </MDBRow>
-                <MDBRow>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      level
-                    </label>
-                    <Select
-                      defaultInputValue={!level ? '' : level.level}
-                      onChange={(e) =>
-                        setFormData({ ...formData, level: e.value })
-                      }
-                      options={lieu.map((t) => ({
-                        value: t._id,
-                        label: t.level,
-                      }))}
-                    />
-                  </MDBCol>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      Status
-                    </label>
-                    <Select
-                      defaultInputValue={formData.status}
-                      options={options_status}
-                      onChange={(e) => {
-                        setFormData({ ...formData, status: e.value });
-                      }}
-                    />
-                  </MDBCol>
-                  <MDBCol md='4' className='mb-3'>
-                    <label
-                      htmlFor='defaultFormRegisterPasswordEx4'
-                      className='grey-text'
-                    >
-                      Recruitement Date
-                    </label>
-                    <input
-                      type='date'
-                      defaultInputValue={formData.recruitement_date}
-                      placeholder='yyyy-mm-dd'
-                      name='recruitement_date'
-                      value={formData.recruitement_date}
-                      onChange={onChange}
-                      className='form-control'
-                      required
-                    />
-                  </MDBCol>
-                </MDBRow>
+          <div className={`modal ${active}`}>
+            <div className='modal-background' />
+            <div className='modal-card'>
+              <header className='modal-card-head'>
+                <p className='modal-card-title'>Teacher details</p>
+                <button
+                  onClick={toggle}
+                  className='delete'
+                  aria-label='close'
+                />
+              </header>
+              <section className='modal-card-body'>
+                <form className='needs-validation' noValidate>
+                  <MDBRow>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterNameEx'
+                        className='grey-text'
+                      >
+                        First name
+                      </label>
+                      <input
+                        value={formData.name}
+                        name='name'
+                        onChange={onChange}
+                        type='text'
+                        id='defaultFormRegisterNameEx'
+                        className='form-control'
+                        placeholder='First name'
+                        required
+                      />
+                      <div className='valid-feedback'>Looks good!</div>
+                    </MDBCol>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterEmailEx2'
+                        className='grey-text'
+                      >
+                        Last name
+                      </label>
+                      <input
+                        value={formData.lastName}
+                        name='lastName'
+                        onChange={onChange}
+                        type='text'
+                        id='defaultFormRegisterEmailEx2'
+                        className='form-control'
+                        placeholder='Last name'
+                        required
+                      />
+                      <div className='valid-feedback'>Looks good!</div>
+                    </MDBCol>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterConfirmEx3'
+                        className='grey-text'
+                      >
+                        Email
+                      </label>
+                      <input
+                        value={formData.email}
+                        type='email'
+                        onChange={onChange}
+                        id='defaultFormRegisterConfirmEx3'
+                        className='form-control'
+                        name='email'
+                        placeholder='Your Email address'
+                      />
+                      <small id='emailHelp' className='form-text text-muted'>
+                        We'll never share your email with anyone else.
+                      </small>
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        phone
+                      </label>
+                      <input
+                        value={formData.phone}
+                        onChange={onChange}
+                        type='text'
+                        id='defaultFormRegisterPasswordEx4'
+                        className='form-control'
+                        name='phone'
+                        placeholder='phone'
+                        required
+                      />
+                    </MDBCol>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        Adress
+                      </label>
+                      <input
+                        value={formData.adresse}
+                        onChange={onChange}
+                        type='text'
+                        id='defaultFormRegisterPasswordEx4'
+                        className='form-control'
+                        name='adresse'
+                        placeholder='Adress'
+                        required
+                      />
+                    </MDBCol>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        Civil Status
+                      </label>
+                      <Select
+                        defaultInputValue={formData.civil_status}
+                        options={options_civil_status}
+                        onChange={(e) => {
+                          setFormData({ ...formData, civil_status: e.value });
+                        }}
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        children
+                      </label>
+                      <input
+                        onChange={onChange}
+                        value={formData.children}
+                        type='text'
+                        id='defaultFormRegisterPasswordEx4'
+                        className='form-control'
+                        name='children'
+                        placeholder='children'
+                        required
+                      />
+                    </MDBCol>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        sexe
+                      </label>
+                      <Select
+                        defaultInputValue={formData.sexe}
+                        options={options_sexe}
+                        onChange={(e) => {
+                          setFormData({ ...formData, sexe: e.value });
+                        }}
+                      />
+                    </MDBCol>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        Date of Birth
+                      </label>
+                      <input
+                        type='date'
+                        placeholder='YYYY-MM-DD'
+                        value={formData.dateOfBirth}
+                        name='dateOfBirth'
+                        onChange={onChange}
+                        className='form-control'
+                        required
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        Place of Birth
+                      </label>
+                      <input
+                        onChange={onChange}
+                        value={formData.placeOfBirth}
+                        type='text'
+                        id='defaultFormRegisterPasswordEx4'
+                        className='form-control'
+                        name='placeOfBirth'
+                        placeholder='place of birth'
+                        required
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                  <br />
+                  <MDBRow>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        speciality
+                      </label>
+                      <Select
+                        defaultInputValue={
+                          !formData.speciality
+                            ? ''
+                            : formData.speciality.speciality
+                        }
+                        onChange={(e) =>
+                          setFormData({ ...formData, speciality: e.value })
+                        }
+                        options={spec.map((t) => ({
+                          value: t._id,
+                          label: t.speciality,
+                        }))}
+                      />
+                    </MDBCol>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        situation
+                      </label>
+                      <Select
+                        defaultInputValue={
+                          !situation ? '' : situation.situation
+                        }
+                        onChange={(e) =>
+                          setFormData({ ...formData, situation: e.value })
+                        }
+                        options={etat.map((t) => ({
+                          value: t._id,
+                          label: t.situation,
+                        }))}
+                      />
+                    </MDBCol>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        Grade
+                      </label>
+                      <Select
+                        defaultInputValue={!grade ? '' : grade.grade}
+                        onChange={(e) =>
+                          setFormData({ ...formData, grade: e.value })
+                        }
+                        options={titre.map((t) => ({
+                          value: t._id,
+                          label: t.grade,
+                        }))}
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        level
+                      </label>
+                      <Select
+                        defaultInputValue={!level ? '' : level.level}
+                        onChange={(e) =>
+                          setFormData({ ...formData, level: e.value })
+                        }
+                        options={lieu.map((t) => ({
+                          value: t._id,
+                          label: t.level,
+                        }))}
+                      />
+                    </MDBCol>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        Status
+                      </label>
+                      <Select
+                        defaultInputValue={formData.status}
+                        options={options_status}
+                        onChange={(e) => {
+                          setFormData({ ...formData, status: e.value });
+                        }}
+                      />
+                    </MDBCol>
+                    <MDBCol md='4' className='mb-3'>
+                      <label
+                        htmlFor='defaultFormRegisterPasswordEx4'
+                        className='grey-text'
+                      >
+                        Recruitement Date
+                      </label>
+                      <input
+                        type='date'
+                        defaultInputValue={formData.recruitement_date}
+                        placeholder='yyyy-mm-dd'
+                        name='recruitement_date'
+                        value={formData.recruitement_date}
+                        onChange={onChange}
+                        className='form-control'
+                        required
+                      />
+                    </MDBCol>
+                  </MDBRow>
 
-                <MDBBtn color='primary' onClick={onsubmit} type='submit'>
-                  Update prof
-                </MDBBtn>
-                <Alert />
-              </form>
-            </MDBModalBody>
-            <MDBModalFooter>
-              <MDBBtn color='secondary' onClick={toggle}>
-                Close
-              </MDBBtn>
-            </MDBModalFooter>
-          </MDBModal>
+                  <MDBBtn color='primary' onClick={onsubmit} type='submit'>
+                    Update prof
+                  </MDBBtn>
+                  <Alert />
+                </form>
+              </section>
+              <footer className='modal-card-foot'>
+                <button onClick={toggle} className='button'>
+                  Cancel
+                </button>
+              </footer>
+            </div>
+          </div>
         </MDBContainer>
       </MDBCard>
     </div>
