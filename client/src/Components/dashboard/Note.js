@@ -34,7 +34,7 @@ const Note = () => {
         width: 200,
       },
       {
-        label: 'Name',
+        label: 'lastName',
         field: 'lastName',
         sort: 'asc',
         width: 200,
