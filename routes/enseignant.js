@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const nodemailer = require('nodemailer');
 const { check, validationResult } = require('express-validator');
 const config = require('config');
 const bcrypt = require('bcryptjs');
@@ -76,6 +76,35 @@ router.post(
         status,
         recruitement_date,
         password,
+      });
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: config.get('EMAIL'),
+          pass: config.get('PASSWORD'),
+        },
+      });
+      const mailOptions = {
+        from: 'devmycode2020@gmail.com',
+        to: `${prof.email}`,
+        subject: 'Ministère de la jeunesse et des sports',
+        html: `
+        <div>
+        <h1>Bienvenue parmi nous</h1>
+        <h2>vous trouvez ci-dessous votre login</h2>
+          <ul>
+            <li> user :  ${prof.email} </li>
+            <li> password :  ${prof.password} </li>
+          </ul>
+        </div>
+        `,
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
       });
       console.log(prof);
       const salt = await bcrypt.genSalt(10);
