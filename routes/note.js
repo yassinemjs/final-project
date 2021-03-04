@@ -1,7 +1,7 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
-const auth = require('../middleware/authAdmin');
 const Note = require('../models/Note');
+const Enseignant = require('../models/Enseignant');
 const router = express.Router();
 const authAdmin = require('../middleware/authAdmin');
 
@@ -11,22 +11,25 @@ const authAdmin = require('../middleware/authAdmin');
 // @access   Private
 router.post(
   '/',
-  auth,
+  authAdmin,
   [check('note', 'Note is required').not().isEmpty()],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).send(error.array());
     }
-    const { enseignant, inspector, note, nature, date } = req.body;
+    const { enseignant, inspector, note, nature } = req.body;
     try {
       const newNote = new Note({
         enseignant,
         inspector,
         note,
         nature,
-        date,
       });
+      const prof = await Enseignant.findById(enseignant);
+      if (!prof) {
+        return res.status(400).send([{ msg: 'prof not found' }]);
+      }
       await newNote.save();
       res.send(newNote);
     } catch (error) {
@@ -40,9 +43,8 @@ router.post(
 router.get('/all', authAdmin, async (req, res) => {
   try {
     const notes = await Note.find()
-
       .sort({ date: -1 })
-      .populate('enseignant', { Id_unique: 1, name: 1, lastName: 1 })
+      .populate('enseignant')
       .populate('inspector');
 
     res.send(notes);

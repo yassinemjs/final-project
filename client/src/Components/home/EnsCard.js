@@ -194,7 +194,11 @@ const EnsCard = ({
                 />
               </header>
               <section className='modal-card-body'>
-                <form className='needs-validation' noValidate>
+                <form
+                  className='needs-validation'
+                  onSubmit={onsubmit}
+                  noValidate
+                >
                   <MDBRow>
                     <MDBCol md='4' className='mb-3'>
                       <label
@@ -497,7 +501,7 @@ const EnsCard = ({
                     </MDBCol>
                   </MDBRow>
 
-                  <MDBBtn color='primary' onClick={onsubmit} type='submit'>
+                  <MDBBtn color='primary' type='submit'>
                     Update prof
                   </MDBBtn>
                   <Alert />

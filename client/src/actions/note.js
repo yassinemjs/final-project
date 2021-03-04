@@ -1,4 +1,4 @@
-import { GET_NOTES, ADD_NOTE } from './types';
+import { GET_NOTES, ADD_NOTE, NOTE_ERROR } from './types';
 import axios from 'axios';
 import { setAlert } from './alert';
 
@@ -13,10 +13,10 @@ export const addNote = (formData) => async (dispatch) => {
     });
     dispatch(setAlert('Note Added', 'success'));
   } catch (err) {
-    const error = err.response.data;
-    if (Array.isArray(error)) {
-      error.forEach((err) => alert(err.msg));
-    }
+    dispatch({
+      type: NOTE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
   }
 };
 

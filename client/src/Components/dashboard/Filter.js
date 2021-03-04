@@ -42,7 +42,7 @@ const Filter = () => {
     columns: [
       {
         label: 'Id_unique',
-        field: 'Id_unique',
+        field: 'id_unique',
         sort: 'asc',
         width: 150,
       },
