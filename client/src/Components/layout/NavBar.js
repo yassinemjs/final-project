@@ -36,17 +36,18 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
-            <MDBNavLink to='/filter'>
-              <MDBIcon icon='filter' />
-              <strong>Filter</strong>
-            </MDBNavLink>
-          </MDBNavItem>
-          <MDBNavItem>
             <MDBNavLink to='addEns'>
               <MDBIcon far icon='plus-square' />
               <strong>Add Enseignant</strong>
             </MDBNavLink>
           </MDBNavItem>
+          <MDBNavItem>
+            <MDBNavLink to='/filter'>
+              <MDBIcon icon='filter' />
+              <strong>Statistics</strong>
+            </MDBNavLink>
+          </MDBNavItem>
+
           <MDBNavItem>
             <MDBNavLink to='/notes'>
               <MDBIcon icon='notes-medical' />

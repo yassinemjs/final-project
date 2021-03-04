@@ -37,13 +37,12 @@ export const createEns = (formData) => async (dispatch) => {
 export const updateEns = (id, formData) => async (dispatch) => {
   try {
     const res = await axios.put(`/api/prof/${id}`, formData);
-
+    console.log(res.data);
     dispatch({
       type: UPDATE_ENS,
       payload: res.data,
     });
     dispatch(setAlert('Teacher updated', 'success'));
-    dispatch(getAllEns());
   } catch (err) {
     console.log(err);
     const error = err.response.data;

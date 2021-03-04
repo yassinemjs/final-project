@@ -1,4 +1,6 @@
 {
     "mongoURI":"mongodb+srv://user:azerty1234@devens.8pjsj.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    "tokenSecret":"secret123"
+    "tokenSecret":"secret123",
+    "EMAIL":"devmycode2020@gmail.com",
+    "PASSWORD":"gomycode2020"
 }

@@ -1,7 +1,7 @@
-import { GET_NOTES, ADD_NOTE } from '../actions/types';
+import { GET_NOTES, ADD_NOTE, NOTE_ERROR } from '../actions/types';
 
 const initialState = {
-  notes: [],
+  notes: null,
   loading: true,
   error: {},
 };
@@ -18,6 +18,8 @@ export default function (state = initialState, action) {
         notes: [...state.notes, payload],
         loading: false,
       };
+    case NOTE_ERROR:
+      return { loading: false, error: payload };
     default:
       return state;
   }

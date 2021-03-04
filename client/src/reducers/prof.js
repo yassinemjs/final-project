@@ -24,11 +24,17 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case ADD_ENS:
-    case UPDATE_ENS:
       return {
         ...state,
         teachers: [...state.teachers, payload],
         loading: false,
+      };
+    case UPDATE_ENS:
+      return {
+        ...state,
+        teachers: state.teachers.map((prof) =>
+          prof._id === payload._id ? (prof = payload) : prof
+        ),
       };
     case GET_TEACHERS:
       return { ...state, teachers: payload, loading: false };

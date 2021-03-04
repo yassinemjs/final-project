@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Grade = require('./Grade');
 
 const EnseignantSchema = new mongoose.Schema({
   id_unique: {

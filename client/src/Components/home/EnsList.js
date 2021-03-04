@@ -5,7 +5,7 @@ import usePagination from './usePagination';
 const EnsList = ({ data, itemsPerPage, startFrom, searchByData }) => {
   const [search, setSearch] = useState('');
   const [searchBy, setSearchBy] = useState(
-    searchByData && searchByData.length > 0 ? searchByData[0].value : ''
+    searchByData && searchByData.length > 0 ? searchByData[1].value : ''
   );
   const [searchFor, setSearchFor] = useState('');
   const {

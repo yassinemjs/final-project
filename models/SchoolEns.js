@@ -5,10 +5,12 @@ const SchoolEnsSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'enseignant',
   },
-  school: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'school',
-  },
+  school: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'school',
+    },
+  ],
   year: {
     type: String,
     require: true,
